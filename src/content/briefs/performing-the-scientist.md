@@ -1,23 +1,24 @@
 ---
-headline: How do highly visible scientists decide who to be online?
-takeaway: Being a scientist online is ongoing identity work. Scientists write
+headline: Performing "the scientist," credibly and authentically
+takeaway: Being a scientist online is ongoing identity work. Scientists perform
   for an imagined audience, balance authenticity against oversharing, and women
   and minoritized scientists pay extra costs for their visibility.
 date: 2025-10
 paperTitle: "Performing ‘the scientist,’ credibly and authentically:
   Understanding how scientists manage their self-presentation on social media"
 journal: Information, Communication & Society
-journalShort: Info., Comm. & Society
 authors:
   - Annie Li Zhang
 method: Interviews
 participants: 24 scientists
+methodNote: U.S., Canadian, and European scientists
 areas:
   - Self-presentation
   - Media representation
   - Trust & credibility
   - Social media
 doi: 10.1080/1369118X.2025.2565313
+openAccess: true
 citation: "Zhang, A. L. (2026). Performing ‘the scientist,’ credibly and
   authentically: Understanding how scientists manage their self-presentation on
   social media. *Information, Communication & Society, 29*(8), 2353–2373."
