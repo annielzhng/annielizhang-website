@@ -4,7 +4,7 @@ import { z } from "astro/zod";
 
 // Every file in src/content/briefs/ is one CSSC Brief.
 // The fields below are the "form" each brief fills in; the site builds everything else from them.
-export const METHODS = ["Survey experiment", "Survey", "Interviews"] as const;
+export const METHODS = ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted"] as const;
 export const RESEARCH_AREAS = [
   "Self-presentation",
   "Media representation",
@@ -27,7 +27,8 @@ const briefs = defineCollection({
     journal: z.string(),
     journalShort: z.string().optional(),
     authors: z.array(z.string()).min(1),
-    method: z.enum(METHODS),
+    // One method, or a list when a study used several (e.g. Content analysis + LLM-assisted).
+    method: z.union([z.enum(METHODS), z.array(z.enum(METHODS)).min(1)]).transform((m) => (Array.isArray(m) ? m : [m])),
     methodNote: z.string().optional(),
     participants: z.string().optional(),
     areas: z.array(z.enum(RESEARCH_AREAS)).min(1),

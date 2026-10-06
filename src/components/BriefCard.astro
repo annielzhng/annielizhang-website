@@ -5,10 +5,10 @@ interface Props { brief: Brief; }
 const { brief } = Astro.props;
 const b = brief.data;
 const href = `/briefs/${brief.id}/`;
-// Cards show four tags at most: the method plus the first three research areas.
-const shownAreas = b.areas.slice(0, 3);
+// Cards show four tags at most: the method(s), then as many research areas as fit.
+const shownAreas = b.areas.slice(0, Math.max(0, 4 - b.method.length));
 ---
-<article class="brief" data-method={b.method} data-areas={b.areas.join("|")}>
+<article class="brief" data-method={b.method.join("|")} data-areas={b.areas.join("|")}>
   <div class="brief-meta">
     <span class="brief-date">{formatDate(b.date)}</span>
     <span class="brief-journal">{b.journal}</span>
@@ -20,7 +20,9 @@ const shownAreas = b.areas.slice(0, 3);
     <p>{b.takeaway}</p>
     <div class="brief-foot">
       <ul class="tags" aria-label="Method and research areas">
-        <li><a class="tag method" href={`/briefs/?method=${encodeURIComponent(b.method)}`} data-method={b.method} title="See all briefs that used this method">{b.method}</a></li>
+        {b.method.map((m) => (
+          <li><a class="tag method" href={`/briefs/?method=${encodeURIComponent(m)}`} data-method={m} title="See all briefs that used this method">{m}</a></li>
+        ))}
         {shownAreas.map((a) => (
           <li><a class="tag ra" href={`/briefs/?area=${encodeURIComponent(a)}`} data-area={a} title={`See all briefs in ${a}`}>{a}</a></li>
         ))}

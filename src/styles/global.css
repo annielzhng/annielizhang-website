@@ -495,3 +495,5 @@ a.tag { text-decoration: none; }
 .oa-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: .98rem; color: var(--muted); }
 .oa-line a { color: var(--blue); font-family: var(--f-display); font-weight: 650; text-decoration: none; }
 .oa-line a:hover { text-decoration: underline; }
+.mini-methods { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.mini-top { align-items: flex-start; }

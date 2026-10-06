@@ -61,12 +61,14 @@ content:
         label: Method
         type: select
         required: true
+        description: Pick one or more.
         options:
-          values: ["Survey experiment", "Survey", "Interviews"]
+          multiple: true
+          values: ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted"]
       - name: participants
-        label: Participants (optional)
+        label: Sample (optional)
         type: string
-        description: e.g. "1,851 people" or "24 scientists"
+        description: e.g. "1,851 people", "24 scientists", or "2,796 TikTok videos"
       - name: methodNote
         label: Method note (optional)
         type: string

@@ -49,8 +49,8 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
       <aside class="study" aria-label="Study at a glance">
         <p class="label">Study at a glance</p>
         <dl>
-          <div><dt>Method</dt><dd>{b.method}{b.methodNote && ` (${b.methodNote})`}</dd></div>
-          {b.participants && <div><dt>Participants</dt><dd>{b.participants}</dd></div>}
+          <div><dt>{b.method.length > 1 ? "Methods" : "Method"}</dt><dd>{b.method.join(" · ")}{b.methodNote && ` (${b.methodNote})`}</dd></div>
+          {b.participants && <div><dt>Sample</dt><dd>{b.participants}</dd></div>}
           <div><dt>Published</dt><dd>{formatDate(b.date)}</dd></div>
           <div><dt>Journal</dt><dd><i style="color:var(--rose)">{b.journal}</i></dd></div>
           <div><dt>Authors</dt><dd set:html={authorsLine(b.authors)} /></div>

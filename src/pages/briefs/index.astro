@@ -6,7 +6,7 @@ import { METHODS, RESEARCH_AREAS } from "../../content.config";
 
 const briefs = await getBriefs();
 const count = (kind: "method" | "area", value: string) =>
-  briefs.filter((b) => (kind === "method" ? b.data.method === value : b.data.areas.includes(value as any))).length;
+  briefs.filter((b) => (kind === "method" ? b.data.method.includes(value as any) : b.data.areas.includes(value as any))).length;
 const dropdowns = [
   { id: "filter-area", kind: "area", label: "Research area", all: "All research areas", options: [...RESEARCH_AREAS] },
   { id: "filter-method", kind: "method", label: "Method", all: "All methods", options: [...METHODS] },
@@ -71,7 +71,7 @@ const dropdowns = [
 
   function apply() {
     const matches = cards.filter((c) =>
-      (state.method === "all" || c.dataset.method === state.method) &&
+      (state.method === "all" || (c.dataset.method || "").split("|").includes(state.method)) &&
       (state.area === "all" || (c.dataset.areas || "").split("|").includes(state.area)));
     const pages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
     state.page = Math.min(Math.max(1, state.page), pages);

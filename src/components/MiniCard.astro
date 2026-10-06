@@ -5,7 +5,7 @@ const { brief } = Astro.props;
 const b = brief.data;
 ---
 <a class="mini" href={`/briefs/${brief.id}/`}>
-  <div class="mini-top"><span class="brief-date">{formatDate(b.date, "short")}</span><span class="tag method">{b.method}</span></div>
+  <div class="mini-top"><span class="brief-date">{formatDate(b.date, "short")}</span><span class="mini-methods">{b.method.map((m) => <span class="tag method">{m}</span>)}</span></div>
   <h3>{b.headline}</h3>
   <p class="mini-meta"><span class="mini-auth" set:html={shortAuthors(b.authors)} /><i class="mini-journal">{b.journal}</i></p>
   <span class="mini-go">Read →</span>
