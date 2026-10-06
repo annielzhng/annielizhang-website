@@ -19,8 +19,8 @@ const pubs = [
   ...extraPubs.map((p, i) => ({ year: p.year, citation: p.citation, journal: p.journal, doi: p.doi, brief: null as string | null, pdf: undefined as string | undefined, open: Boolean((p as any).openAccess), order: i })),
   ...briefs.map((b, i) => ({ year: yearOf(b.data.citation), citation: b.data.citation, journal: b.data.journal, doi: b.data.doi, brief: b.id, pdf: b.data.acceptedPdf, open: b.data.openAccess, order: 1000 + i })),
 ].sort((a, b) => rank(b.year) - rank(a.year) || a.order - b.order);
-// Related briefs appear newest first.
-const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
+// Related briefs: the five most recent, newest first (by publication date).
+const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id)).slice(0, 5);
 ---
 <Base title="Research" description="Annie Li Zhang’s research on strategic science communication, inclusive participation, and new media technologies, with a full list of publications.">
   <section class="stack" style="--gap:20px">
