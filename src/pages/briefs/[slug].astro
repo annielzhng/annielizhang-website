@@ -27,7 +27,7 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
       <p class="label">CSSC Brief · {formatDate(b.date, "short")}</p>
       <h1>{b.headline}</h1>
       <p class="based">Based on <cite>{b.paperTitle}</cite>, published in <span class="journal">{b.journal}</span>.</p>
-      {b.openAccess && <p class="oa-line"><OpenAccess size="md" /><span>The full paper is free to read on the journal’s website. <a href={`https://doi.org/${b.doi}`}>Read it here ↗</a></span></p>}
+      {b.openAccess && <p class="oa-line"><OpenAccess size="md" /><span>The full paper is free to read on the journal’s website.</span></p>}
     </div>
     <div class="brief-layout">
       <div class="prose">
@@ -53,7 +53,6 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
           {b.participants && <div><dt>Participants</dt><dd>{b.participants}</dd></div>}
           <div><dt>Published</dt><dd>{formatDate(b.date)}</dd></div>
           <div><dt>Journal</dt><dd><i style="color:var(--rose)">{b.journal}</i></dd></div>
-          {b.openAccess && <div><dt>Access</dt><dd><OpenAccess /></dd></div>}
           <div><dt>Authors</dt><dd set:html={authorsLine(b.authors)} /></div>
           <div><dt>Research areas</dt><dd>
             <ul class="tags" style="margin-top:6px">
