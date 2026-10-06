@@ -9,6 +9,7 @@ export async function GET(context: APIContext) {
     title: "CSSC Briefs · Annie Li Zhang",
     description: "Plain-language summaries of research on the science of science communication.",
     site: context.site ?? site.url,
+    stylesheet: "/rss-style.xsl",
     items: briefs.map((b) => ({
       title: b.data.headline,
       description: b.data.takeaway,

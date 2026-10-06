@@ -1,0 +1,50 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../data/site.json";
+const feed = new URL("/rss.xml", site.url).href;
+const f = encodeURIComponent(feed);
+const readers = [
+  { name: "Feedly", href: `https://feedly.com/i/subscription/feed/${f}` },
+  { name: "Inoreader", href: `https://www.inoreader.com/?add_feed=${f}` },
+];
+---
+<Base title="Follow the CSSC Briefs" description="Get each new CSSC Brief as soon as it’s published.">
+  <section class="stack" style="--gap:20px">
+    <a class="back" href="/briefs/">← All CSSC Briefs</a>
+    <p class="label">Follow</p>
+    <h1 class="page-title">Follow the CSSC Briefs</h1>
+    <p class="measure" style="font-size:1.15rem">Get each new brief as soon as it’s published. The easiest way is a free feed reader, an app that collects new posts from the sites you follow in one place.</p>
+  </section>
+
+  <div class="follow-grid">
+    <section class="follow-card">
+      <h2>Follow in one click</h2>
+      <p class="muted">Opens the reader with the CSSC Briefs ready to add.</p>
+      <div class="btn-row">
+        {readers.map((r) => <a class="btn primary btn-send" href={r.href}>Follow on {r.name}</a>)}
+      </div>
+    </section>
+    <section class="follow-card">
+      <h2>Use another reader</h2>
+      <p class="muted">In any feed reader (NetNewsWire, Reeder, Thunderbird, and others), choose “Add” or “Follow” and paste this address:</p>
+      <div class="feed-row">
+        <code class="feed-url" id="feed-url">{feed}</code>
+        <button class="btn small btn-copy" type="button" id="copy-feed">Copy address</button>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  const btn = document.getElementById("copy-feed")!;
+  const el = document.getElementById("feed-url")!;
+  btn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(el.textContent || ""); btn.textContent = "Copied"; }
+    catch {
+      const r = document.createRange(); r.selectNodeContents(el);
+      const s = getSelection()!; s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Selected. Press Ctrl+C to copy";
+    }
+    setTimeout(() => (btn.textContent = "Copy address"), 2000);
+  });
+</script>
