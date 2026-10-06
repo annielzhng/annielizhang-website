@@ -93,6 +93,10 @@ The site is set up for [Netlify](https://netlify.com), which is free. To deploy 
 - **Domain:** go to **Domain management → Add a domain**, enter `annielizhang.com`, and follow the DNS instructions.
 - **Old links:** `public/_redirects` sends every old WordPress address to its new page. That covers each brief, `/cssc-briefs/`, `/research-interests/`, and `/77-2/`.
 
+## Visitor statistics (GoatCounter)
+
+Daily visitors, most-read briefs, and where readers come from are tracked with [GoatCounter](https://www.goatcounter.com): free, no cookies, no consent banner needed. The site's GoatCounter code lives in `src/data/site.json` (`goatcounter`); leave it empty to turn tracking off. View the dashboard at `https://<code>.goatcounter.com`.
+
 ## Working on the code (optional)
 
 ```sh

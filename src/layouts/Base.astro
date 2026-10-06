@@ -37,6 +37,9 @@ const canonical = new URL(path, site.url).href;
     <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {site.goatcounter && (
+      <script is:inline async data-goatcounter={`https://${site.goatcounter}.goatcounter.com/count`} src="https://gc.zgo.at/count.js"></script>
+    )}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400..650;1,7..72,400&display=swap" />
   </head>
   <body>
