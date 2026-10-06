@@ -87,13 +87,12 @@ Every brief is a text file in `src/content/briefs/`. To add one, copy an existin
 
 ---
 
-## Hosting (Cloudflare Pages)
+## Hosting (Cloudflare)
 
-The site is hosted for free on [Cloudflare Pages](https://pages.cloudflare.com), which rebuilds it automatically whenever anything in this repository changes, including every save in Pages CMS. The free plan allows 500 builds a month.
+The site is hosted for free on Cloudflare (as a Worker named **annielizhang**), which rebuilds it automatically whenever anything in this repository changes, including every save in Pages CMS. Build settings live in `wrangler.jsonc`; the Node version comes from `.node-version`. To see builds, open the Cloudflare dashboard → **Workers & Pages → annielizhang → Deployments**.
 
-- **Setup (already done):** in the Cloudflare dashboard, go to **Workers & Pages → Create application → Pages → Connect to Git**, pick this repository, and use the **Astro** preset (build command `npm run build`, output directory `dist`). The Node version comes from `.node-version`.
 - **Contact form:** handled by [Web3Forms](https://web3forms.com) (free, 250 messages a month). Messages go to the email the access key was created with. The key lives in **Site settings → Contact form key** in Pages CMS (`formKey` in `src/data/site.json`); it is meant to be public. If the key is missing, the form tells visitors to email you directly.
-- **Domain:** in the Pages project, go to **Custom domains → Set up a custom domain** and enter `annielizhang.com` (and `www.annielizhang.com`). Cloudflare walks you through pointing the domain at it.
+- **Domain:** in the annielizhang project, go to **Settings → Domains & Routes → Add → Custom domain** and enter `annielizhang.com` (and `www.annielizhang.com`). Cloudflare walks you through pointing the domain at it.
 - **Old links:** `public/_redirects` sends every old WordPress address to its new page. That covers each brief, `/cssc-briefs/`, `/research-interests/`, and `/77-2/`.
 
 ## Visitor statistics (GoatCounter)
