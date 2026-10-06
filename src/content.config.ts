@@ -4,7 +4,7 @@ import { z } from "astro/zod";
 
 // Every file in src/content/briefs/ is one CSSC Brief.
 // The fields below are the "form" each brief fills in; the site builds everything else from them.
-export const METHODS = ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted", "Practice guide"] as const;
+export const METHODS = ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted", "Perspective"] as const;
 export const RESEARCH_AREAS = [
   "Self-presentation",
   "Media representation",

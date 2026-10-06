@@ -64,7 +64,7 @@ content:
         description: Pick one or more.
         options:
           multiple: true
-          values: ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted", "Practice guide"]
+          values: ["Survey experiment", "Survey", "Interviews", "Content analysis", "LLM-assisted", "Perspective"]
       - name: participants
         label: Sample (optional)
         type: string

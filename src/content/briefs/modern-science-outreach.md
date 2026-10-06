@@ -1,27 +1,27 @@
 ---
-headline: "From the airport bar to TikTok: six ways scientists can share their work"
-takeaway: "Science communication doesn't have to mean going viral. In a guide for Cell, we lay out six practices, from perfecting your elevator pitch to joining podcasts, that help scientists reach the public, each rated by how much time it takes and how far it can reach."
+headline: "Modern science outreach: a guide for scientists"
+takeaway: "Science communication doesn't have to mean going viral every day. In a guide for Cell, we lay out six practices, from perfecting your elevator pitch to joining podcasts, that help scientists reach the public, each rated by how much time it takes and how far it can reach."
 date: "2026-08"
 paperTitle: "Modern Science Outreach: A Guide for Scientists"
 journal: "Cell"
 journalShort: "Cell"
 authors:
-  - "A. Moses"
+  - "Ashley Moses"
   - "Annie Li Zhang"
-  - "M. Todorovic"
-  - "R. Ramakrishna"
-  - "M. Facciani"
-  - "D. M. Eagleman"
-  - "R. Sever"
-  - "H. A. Eyre"
-  - "S. Bhamla"
-  - "J. P. Moore"
-  - "S. B. Chapman"
-  - "K. M. Ramos"
-  - "E. C. Hayden"
-  - "R. C. Malenka"
-  - "B. Rein"
-method: "Practice guide"
+  - "Michael Todorovic"
+  - "Rohan Ramakrishna"
+  - "Matthew Facciani"
+  - "David M. Eagleman"
+  - "Richard Sever"
+  - "Harris A. Eyre"
+  - "Saad Bhamla"
+  - "John P. Moore"
+  - "Sandra Bond Chapman"
+  - "Khara M. Ramos"
+  - "Erika C. Hayden"
+  - "Robert C. Malenka"
+  - "Ben Rein"
+method: "Perspective"
 areas:
   - "Public engagement of science"
   - "Message strategies"
@@ -38,7 +38,7 @@ So 15 of us, researchers and science communicators from many fields, wrote a pra
 
 ## What we found
 
-- **Start with your audience.** "The public" isn't one group. Figure out who you most want to reach, what they already know and care about, and what might stop them from listening, so you can meet people where they are.
+- **Before you even get started, know your audience.** "The public" isn't one group. Figure out who you most want to reach, what they already know and care about, and what might stop them from listening, so you can meet people where they are.
 - **Craft your research summary** *(low effort).* Imagine a curious stranger at an airport bar asks what you do. Could you explain it simply? An hour spent drafting a clear, jargon-free summary and testing it on friends pays off everywhere, from family dinners to your lab website.
 - **Get communication training** *(low to high effort).* Options range from one-day workshops and competitions like the Three Minute Thesis to full degree programs in science communication.
 - **Talk to journalists** *(moderate effort).* Reporters need scientists to get the story right. Your university's press office can help you prepare, and becoming a go-to source can open more doors over time.

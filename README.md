@@ -26,7 +26,7 @@ In Pages CMS, go to **CSSC Briefs → Add an entry** and fill in the form.
 | Publication date | Year-month, like `2025-10` |
 | Paper title, Journal | As published |
 | Authors | One per line, in order, full names |
-| Method | One or more: Survey experiment, Survey, Interviews, Content analysis, LLM-assisted, Practice guide |
+| Method | One or more: Survey experiment, Survey, Interviews, Content analysis, LLM-assisted, Perspective |
 | Research areas | Pick up to four, most central first (cards show the first three) |
 | DOI | Just the DOI, like `10.1177/10755470221114352` |
 | Open access | Turn on if the published paper is free to read on the journal's site; adds an "Open access" label |
