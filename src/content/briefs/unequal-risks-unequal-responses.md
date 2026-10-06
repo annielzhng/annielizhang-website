@@ -1,27 +1,36 @@
 ---
 headline: "Race or class: does it change how people respond to climate inequality?"
-takeaway: "When a news story said Black communities face the greatest climate risks, readers were less likely to believe climate impacts are unequal than when the story focused on poor or working-class communities. The backlash came mostly from White readers and people with more symbolic racism."
-date: "2026-01"
-paperTitle: "Unequal Risks, Unequal Responses: Differential Effects of Emphasizing Race vs. Class Disparities in News Stories about Climate Impacts"
-journal: "Science Communication"
-journalShort: "Science Communication"
+takeaway: When a news story said Black communities face the greatest climate
+  risks, readers were less likely to believe climate impacts are unequal than
+  when the story focused on poor or working-class communities. The backlash came
+  mostly from White readers and people with more symbolic racism.
+date: 2026-01
+paperTitle: "Unequal Risks, Unequal Responses: Differential Effects of
+  Emphasizing Race vs. Class Disparities in News Stories about Climate Impacts"
+journal: Science Communication
+journalShort: Science Communication
 authors:
-  - "P. Sol Hart"
-  - "Lauren Feldman"
-  - "Soobin Choi"
-  - "Annie Li Zhang"
-method: "Survey experiment"
-participants: "2,855 people across two studies"
-methodNote: "two experiments, on flooding and on heat waves"
+  - P. Sol Hart
+  - Lauren Feldman
+  - Soobin Choi
+  - Annie Li Zhang
+method:
+  - Survey experiment
+participants: 2,855 people across two studies
+methodNote: two experiments, on flooding and on heat waves
 areas:
-  - "Climate & environment"
-  - "Message strategies"
-  - "Media representation"
-  - "Risk perceptions"
-doi: "10.1177/10755470251397919"
-citation: "Hart, P. S., Feldman, L., Choi, S., & Zhang, A. L. (2026). Unequal risks, unequal responses: Differential effects of emphasizing race vs. class disparities in news stories about climate impacts. *Science Communication*. Advance online publication."
+  - Climate & environment
+  - Message strategies
+  - Media representation
+  - Risk perceptions
+doi: 10.1177/10755470251397919
+openAccess: false
+inPress: false
+citation: "Hart, P. S., Feldman, L., Choi, S., & Zhang, A. L. (2026). Unequal
+  risks, unequal responses: Differential effects of emphasizing race vs. class
+  disparities in news stories about climate impacts. *Science Communication*.
+  Advance online publication."
 ---
-
 ## What we did
 
 Scientists broadly agree that climate change hits low-income communities and communities of color the hardest. Yet most Americans don't know this, and they tend to accept class-based gaps more readily than racial ones. So we wondered: does it matter *who* a news story says is most at risk?
