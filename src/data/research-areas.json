@@ -2,7 +2,7 @@
   {
     "id": "strategic",
     "title": "Strategic science communication",
-    "short": "How scientists’ choices on social media shape trust and engagement.",
+    "short": "How scientists’ communication choices on social media shape trust and engagement.",
     "text": "How can scientists use social media effectively? I test how common practices, such as sharing personal details, using humor, or presenting themselves in different ways, shape how audiences perceive and engage with scientists. The goal is evidence-based practice that makes science more approachable and transparent.",
     "related": [
       "behind-the-lab-coat",
@@ -15,7 +15,7 @@
     "id": "inclusive",
     "title": "Inclusive participation in science communication",
     "short": "Whose voices are heard in online conversations about science.",
-    "text": "How do diverse voices shape conversations about science online? I study the experiences of scientists from underrepresented groups, such as Black scientists sharing their work through #BlackInSTEM, and how that visibility changes public ideas of who can be a scientist.",
+    "text": "How do diverse voices shape the conversation about science on social media? My work also aims to understand what role social media plays in highlighting and amplifying voices from underrepresented communities, and whether these platforms can be used to promote inclusive scientific dialogue and reflect diverse perspectives.",
     "related": [
       "performing-the-scientist"
     ]
@@ -23,11 +23,11 @@
   {
     "id": "new-media",
     "title": "Navigating new media technologies",
-    "short": "How new platforms change the reach of science, health, and environmental information.",
-    "text": "New media technologies are changing how scientific information is shared and consumed. I study how digital platforms and online communities can improve the reach and reception of science, health, and environmental information and build trust, while limiting risks such as misinformation.",
+    "short": "How new media technologies are changing how scientific information is shared and consumed",
+    "text": "The digital landscape is rapidly evolving, and new media technologies are revolutionizing how scientific information is shared and consumed. My research explores how new media technologies can be leveraged to improve the dissemination and reception of scientific, health, and environmental information and improve trust in science. ",
     "related": [
-      "partisan-pandemic",
-      "flooding-imagery-party-cues"
+      "behind-the-lab-coat",
+      "performing-the-scientist"
     ]
   }
 ]
