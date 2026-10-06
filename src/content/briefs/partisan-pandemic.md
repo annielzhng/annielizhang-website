@@ -3,7 +3,7 @@ headline: Why did COVID-19 split along party lines so fast?
 takeaway: Trust in public health institutions was the biggest driver of partisan
   divides over COVID-19, and that trust became increasingly tied to party,
   especially after the 2020 election.
-date: 2022-03
+date: 2022-05
 paperTitle: "A Partisan Pandemic: How COVID-19 Was Primed for Polarization"
 journal: The ANNALS of the American Academy of Political and Social Science
 authors:
