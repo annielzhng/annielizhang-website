@@ -6,7 +6,7 @@ paperTitle: "Stitching, Dueting, and Playing with Science on TikTok: An AI-Power
 journal: "Computational Communication Research"
 journalShort: "Comp. Comm. Research"
 authors:
-  - "Y. Li"
+  - "Yuhan Li"
   - "Annie Li Zhang"
   - "Hang Lu"
 method:
@@ -44,4 +44,4 @@ We gathered every U.S. TikTok video tagged #science from 2024 (over 115,000), fi
 
 ## Why it matters
 
-TikTok's interactive features can make science feel like a conversation: scientists answering real questions on camera, creators debunking myths, everyday people weighing in. But few scientists use them, and the same openness that lets experts correct misinformation also gives pseudoscience a stage. For science communicators, the takeaways are practical: answering audience questions directly, showing your face, and using visuals can pay off, but you *might* want to skip the background music when you're talking. For researchers, we also offer a validated AI-powered framework for studying short videos at scale.
+TikTok's interactive features can make science feel like a conversation: scientists answering real questions on camera, creators debunking myths, everyday people weighing in. But few creators use them, and the same openness that lets experts correct misinformation also gives pseudoscience a stage. For science communicators, the takeaways are practical: answering audience questions directly, showing your face, and using visuals can pay off, but you *might* want to skip the background music when you're talking. For researchers, we also offer a validated AI-powered framework for studying short videos at scale.
