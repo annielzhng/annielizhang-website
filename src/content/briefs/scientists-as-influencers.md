@@ -20,6 +20,7 @@ areas:
   - Climate & environment
   - Social media
 doi: 10.1177/20563051231180623
+openAccess: true
 citation: "Zhang, A. L., & Lu, H. (2023). Scientists as influencers: The role of
   source identity, self-disclosure, and anti-intellectualism in science
   communication on social media. *Social Media + Society, 9*(2), 1–16."

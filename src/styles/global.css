@@ -258,7 +258,7 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
 .found { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
 .found li { position: relative; padding-left: 28px; }
 .found li::before { content: ""; position: absolute; left: 3px; top: .55em; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--head); background: var(--pink); }
-.study { position: relative; top: calc(env(safe-area-inset-top, 0px) + 84px); border-top: 2px solid var(--head); padding-top: 14px; display: flex; flex-direction: column; gap: 14px; }
+.study { position: relative; border-top: 2px solid var(--head); padding-top: 14px; display: flex; flex-direction: column; gap: 14px; }
 .study dl { display: flex; flex-direction: column; gap: 14px; }
 .study dt { font-family: var(--f-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
 .study dd { margin: 2px 0 0; font-size: .97rem; line-height: 1.45; }
@@ -485,3 +485,13 @@ a.tag { text-decoration: none; }
 .feed-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .feed-url { font-family: var(--f-mono); font-size: .9rem; padding: .45em .75em; border-radius: 8px; background: var(--sage); color: var(--sage-ink); user-select: all; overflow-wrap: anywhere; min-width: 0; }
 @media (max-width: 760px) { .follow-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Open access label */
+.oa { display: inline-flex; align-items: center; gap: .4em; align-self: flex-start; white-space: nowrap; font-family: var(--f-display); font-weight: 650; line-height: 1; color: var(--blue); background: var(--sage); border-radius: 999px; }
+.oa svg { width: 1.05em; height: 1.05em; flex: none; }
+.oa-sm { font-size: .76rem; padding: .38em .7em .38em .6em; }
+.oa-md { font-size: .86rem; padding: .45em .85em .45em .7em; }
+.pub-links .oa { align-self: center; }
+.oa-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: .98rem; color: var(--muted); }
+.oa-line a { color: var(--blue); font-family: var(--f-display); font-weight: 650; text-decoration: none; }
+.oa-line a:hover { text-decoration: underline; }

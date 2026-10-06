@@ -1,5 +1,6 @@
 ---
 import { formatDate, shortAuthors, type Brief } from "../lib/briefs";
+import OpenAccess from "./OpenAccess.astro";
 interface Props { brief: Brief; }
 const { brief } = Astro.props;
 const b = brief.data;
@@ -8,5 +9,6 @@ const b = brief.data;
   <div class="mini-top"><span class="brief-date">{formatDate(b.date, "short")}</span><span class="tag method">{b.method}</span></div>
   <h3>{b.headline}</h3>
   <p class="mini-meta"><span class="mini-auth" set:html={shortAuthors(b.authors)} /><i class="mini-journal">{b.journal}</i></p>
+  {b.openAccess && <OpenAccess />}
   <span class="mini-go">Read →</span>
 </a>

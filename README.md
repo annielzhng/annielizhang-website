@@ -29,6 +29,7 @@ In Pages CMS, go to **CSSC Briefs → Add an entry** and fill in the form.
 | Method | Survey experiment, Survey, or Interviews |
 | Research areas | Pick up to four, most central first (cards show the first three) |
 | DOI | Just the DOI, like `10.1177/10755470221114352` |
+| Open access | Turn on if the published paper is free to read on the journal's site; adds an "Open access" label |
 | Accepted version (PDF) | Optional. Upload the accepted manuscript so readers can get past paywalls |
 | Citation | APA. Put the journal and volume between `*asterisks*` to italicize them |
 | Brief text | Three headings: **What we did**, **What we found** (as a bulleted list), **Why it matters** |

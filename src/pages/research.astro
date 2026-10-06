@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import MiniCard from "../components/MiniCard.astro";
+import OpenAccess from "../components/OpenAccess.astro";
 import { getBriefs, citationHTML } from "../lib/briefs";
 import research from "../data/research.json";
 import areas from "../data/research-areas.json";
@@ -15,8 +16,8 @@ const byId = new Map(briefs.map((b) => [b.id, b]));
 const yearOf = (c: string) => c.match(/\((\d{4}|in press)\)/)?.[1] ?? "";
 const rank = (y: string) => (y === "in press" ? 9999 : Number(y) || 0);
 const pubs = [
-  ...extraPubs.map((p, i) => ({ year: p.year, citation: p.citation, journal: p.journal, doi: p.doi, brief: null as string | null, pdf: undefined as string | undefined, order: i })),
-  ...briefs.map((b, i) => ({ year: yearOf(b.data.citation), citation: b.data.citation, journal: b.data.journal, doi: b.data.doi, brief: b.id, pdf: b.data.acceptedPdf, order: 1000 + i })),
+  ...extraPubs.map((p, i) => ({ year: p.year, citation: p.citation, journal: p.journal, doi: p.doi, brief: null as string | null, pdf: undefined as string | undefined, open: Boolean((p as any).openAccess), order: i })),
+  ...briefs.map((b, i) => ({ year: yearOf(b.data.citation), citation: b.data.citation, journal: b.data.journal, doi: b.data.doi, brief: b.id, pdf: b.data.acceptedPdf, open: b.data.openAccess, order: 1000 + i })),
 ].sort((a, b) => rank(b.year) - rank(a.year) || a.order - b.order);
 // Related briefs appear newest first.
 const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
@@ -85,6 +86,7 @@ const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
               {p.brief && <a class="to-brief" href={`/briefs/${p.brief}/`}>CSSC Brief</a>}
               {p.doi && <a class="to-journal" href={`https://doi.org/${p.doi}`} aria-label={`Full article in ${p.journal}`}><i>{p.journal}</i> ↗</a>}
               {p.pdf && <a class="to-pdf" href={p.pdf}>PDF</a>}
+              {p.open && <OpenAccess />}
             </div>
           </div>
         </li>

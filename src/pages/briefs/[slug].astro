@@ -2,6 +2,7 @@
 import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import ShareBar from "../../components/ShareBar.astro";
+import OpenAccess from "../../components/OpenAccess.astro";
 import site from "../../data/site.json";
 import { getBriefs, formatDate, authorsLine, citationHTML, citationText, type Brief } from "../../lib/briefs";
 
@@ -26,6 +27,7 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
       <p class="label">CSSC Brief · {formatDate(b.date, "short")}</p>
       <h1>{b.headline}</h1>
       <p class="based">Based on <cite>{b.paperTitle}</cite>, published in <span class="journal">{b.journal}</span>.</p>
+      {b.openAccess && <p class="oa-line"><OpenAccess size="md" /><span>The full paper is free to read on the journal’s website. <a href={`https://doi.org/${b.doi}`}>Read it here ↗</a></span></p>}
     </div>
     <div class="brief-layout">
       <div class="prose">
@@ -39,7 +41,7 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
           <p class="cite-text" id="cite-text" data-copy={citationText(brief)} set:html={`${citationHTML(b.citation)} https://doi.org/${b.doi}`} />
           <div class="btn-row">
             <button class="btn small" type="button" id="copy-cite">Copy citation</button>
-            <a class="btn small primary" href={`https://doi.org/${b.doi}`}>Read the paper</a>
+            <a class="btn small primary" href={`https://doi.org/${b.doi}`}>{b.openAccess ? "Read the paper (free)" : "Read the paper"}</a>
             {b.acceptedPdf && <a class="btn small btn-pdf" href={b.acceptedPdf}>Accepted version (PDF)</a>}
           </div>
         </section>
@@ -51,6 +53,7 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
           {b.participants && <div><dt>Participants</dt><dd>{b.participants}</dd></div>}
           <div><dt>Published</dt><dd>{formatDate(b.date)}</dd></div>
           <div><dt>Journal</dt><dd><i style="color:var(--rose)">{b.journal}</i></dd></div>
+          {b.openAccess && <div><dt>Access</dt><dd><OpenAccess /></dd></div>}
           <div><dt>Authors</dt><dd set:html={authorsLine(b.authors)} /></div>
           <div><dt>Research areas</dt><dd>
             <ul class="tags" style="margin-top:6px">

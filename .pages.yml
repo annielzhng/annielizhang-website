@@ -92,6 +92,10 @@ content:
         type: string
         required: true
         description: Just the DOI, e.g. 10.1177/10755470221114352
+      - name: openAccess
+        label: Open access
+        type: boolean
+        description: Turn on if the published paper is free to read on the journal's website.
       - name: acceptedPdf
         label: Accepted version (PDF, optional)
         type: file
