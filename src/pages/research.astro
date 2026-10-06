@@ -85,7 +85,6 @@ const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
             <div class="pub-links">
               {p.brief && <a class="to-brief" href={`/briefs/${p.brief}/`}>CSSC Brief</a>}
               {p.doi && <a class="to-journal" href={`https://doi.org/${p.doi}`} aria-label={`Full article in ${p.journal}`}><i>{p.journal}</i> ↗</a>}
-              {p.pdf && <a class="to-pdf" href={p.pdf}>PDF</a>}
               {p.open && <OpenAccess />}
             </div>
           </div>
