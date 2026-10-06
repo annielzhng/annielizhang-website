@@ -58,10 +58,6 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
             </ul>
           </dd></div>
         </dl>
-        <div class="paper-links">
-          <a class="paper-link" href={`https://doi.org/${b.doi}`}>Published paper ↗</a>
-          {b.acceptedPdf && <a class="paper-link pdf" href={b.acceptedPdf}>Accepted version (free PDF)</a>}
-        </div>
         <ShareBar url={pageUrl} title={b.headline} />
       </aside>
     </div>
