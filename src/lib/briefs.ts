@@ -18,6 +18,11 @@ export function formatDate(date: string, style: "long" | "short" = "long"): stri
   return `${style === "short" ? name.slice(0, 3) : name} ${y}`;
 }
 
+/** The brief's date for display: "In press" while the paper is forthcoming, otherwise the month. */
+export function dateLabel(b: { date: string; inPress?: boolean }, style: "long" | "short" = "long"): string {
+  return b.inPress ? "In press" : formatDate(b.date, style);
+}
+
 const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const me = (name: string, html: string) => (name === ME ? `<b class="me">${html}</b>` : html);
 

@@ -1,5 +1,5 @@
 ---
-import { authorsLine, formatDate, type Brief } from "../lib/briefs";
+import { authorsLine, dateLabel, type Brief } from "../lib/briefs";
 import OpenAccess from "./OpenAccess.astro";
 interface Props { brief: Brief; }
 const { brief } = Astro.props;
@@ -12,7 +12,7 @@ const shownAreas = b.areas.slice(0, 3);
 ---
 <article class="brief" data-method={b.method.join("|")} data-areas={b.areas.join("|")}>
   <div class="brief-meta">
-    <span class="brief-date">{formatDate(b.date)}</span>
+    <span class="brief-date">{dateLabel(b)}</span>
     <span class="brief-journal">{b.journal}</span>
     {b.openAccess && <OpenAccess />}
     <p class="brief-authors"><span class="k">Authors</span><Fragment set:html={authorsLine(b.authors)} /></p>

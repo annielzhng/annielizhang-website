@@ -99,6 +99,10 @@ content:
         label: Open access
         type: boolean
         description: Turn on if the published paper is free to read on the journal's website.
+      - name: inPress
+        label: In press
+        type: boolean
+        description: Turn on while the paper is accepted but not yet in an issue. Cards show "In press" instead of the date. Turn off and set the real publication date once it's out.
       - name: acceptedPdf
         label: Accepted version (PDF, optional)
         type: file

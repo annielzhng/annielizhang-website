@@ -4,7 +4,7 @@ import Base from "../../layouts/Base.astro";
 import ShareBar from "../../components/ShareBar.astro";
 import OpenAccess from "../../components/OpenAccess.astro";
 import site from "../../data/site.json";
-import { getBriefs, formatDate, authorsLine, citationHTML, citationText, type Brief } from "../../lib/briefs";
+import { getBriefs, dateLabel, authorsLine, citationHTML, citationText, type Brief } from "../../lib/briefs";
 
 export async function getStaticPaths() {
   const briefs = await getBriefs();
@@ -24,9 +24,9 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
   <article class="brief-page">
     <div class="stack" style="--gap:18px">
       <a class="back" href="/briefs/">← All CSSC Briefs</a>
-      <p class="label">CSSC Brief · {formatDate(b.date, "short")}</p>
+      <p class="label">CSSC Brief · {dateLabel(b, "short")}</p>
       <h1>{b.headline}</h1>
-      <p class="based">Based on <cite>{b.paperTitle}</cite>, published in <span class="journal">{b.journal}</span>.</p>
+      <p class="based">Based on <cite>{b.paperTitle}</cite>, {b.inPress ? "forthcoming" : "published"} in <span class="journal">{b.journal}</span>.</p>
       {b.openAccess && <p class="oa-line"><OpenAccess size="md" /><span>The full paper is free to read on the journal’s website.</span></p>}
     </div>
     <div class="brief-layout">
@@ -51,7 +51,7 @@ const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
         <dl>
           <div><dt>{b.method.length > 1 ? "Methods" : "Method"}</dt><dd>{b.method.join(" · ")}{b.methodNote && ` (${b.methodNote})`}</dd></div>
           {b.participants && <div><dt>Sample</dt><dd>{b.participants}</dd></div>}
-          <div><dt>Published</dt><dd>{formatDate(b.date)}</dd></div>
+          <div><dt>{b.inPress ? "Status" : "Published"}</dt><dd>{dateLabel(b)}</dd></div>
           <div><dt>Journal</dt><dd><i style="color:var(--rose)">{b.journal}</i></dd></div>
           <div><dt>Authors</dt><dd set:html={authorsLine(b.authors)} /></div>
           <div><dt>Research areas</dt><dd>

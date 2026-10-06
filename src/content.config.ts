@@ -38,6 +38,8 @@ const briefs = defineCollection({
     acceptedPdf: z.string().optional(),
     // True when the published paper is free to read on the journal's site.
     openAccess: z.boolean().default(false),
+    // True while the paper is accepted but not yet in an issue; shows "In press" instead of the month.
+    inPress: z.boolean().default(false),
     citation: z.string(),
   }),
 });
