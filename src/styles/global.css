@@ -217,6 +217,7 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
 .pager-nums button[aria-current="page"] { background: var(--head); border-color: var(--head); color: var(--on-accent); }
 .pager-nums button:disabled { opacity: .4; cursor: default; }
 .filter-bar { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 96px); }
+#publications { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 96px); }
 
 /* Contact form */
 .msg { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: clamp(22px, 3vw, 32px); border-radius: 18px; background: var(--surface); border: 1px solid var(--rule); }

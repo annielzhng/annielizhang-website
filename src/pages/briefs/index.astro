@@ -8,8 +8,8 @@ const briefs = await getBriefs();
 const count = (kind: "method" | "area", value: string) =>
   briefs.filter((b) => (kind === "method" ? b.data.method.includes(value as any) : b.data.areas.includes(value as any))).length;
 const dropdowns = [
-  { id: "filter-area", kind: "area", label: "Research area", all: "All research areas", options: [...RESEARCH_AREAS] },
-  { id: "filter-method", kind: "method", label: "Method", all: "All methods", options: [...METHODS] },
+  { id: "filter-area", kind: "area", label: "Research area", all: "All research areas", options: [...RESEARCH_AREAS].sort((a, b) => a.localeCompare(b)) },
+  { id: "filter-method", kind: "method", label: "Method", all: "All methods", options: [...METHODS].sort((a, b) => a.localeCompare(b)) },
 ] as const;
 ---
 <Base title="CSSC Briefs" description="The CSSC Briefs: plain-language summaries of Annie Li Zhang’s research on science communication, social media, and trust in science.">

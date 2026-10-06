@@ -71,12 +71,12 @@ const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id)).slic
     })}
   </section>
 
-  <section class="block stack" style="--gap:0">
+  <section class="block stack" style="--gap:0" id="publications">
     <div class="section-head">
       <h2>Publications</h2>
       <a class="more" href={site.links.scholar}>Google Scholar →</a>
     </div>
-    <ol class="pubs">
+    <ol class="pubs" id="pubs" data-per-page="15">
       {pubs.map((p) => (
         <li>
           <span class="year">{p.year === "in press" ? "In press" : p.year}</span>
@@ -91,10 +91,36 @@ const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id)).slic
         </li>
       ))}
     </ol>
+    <nav class="pager-nums" id="pubs-pager" aria-label="Publication pages" hidden></nav>
   </section>
 </Base>
 
 <script>
+  // Publications: 15 per page once the list grows past that (without JavaScript, all are shown).
+  {
+    const list = document.getElementById("pubs")!;
+    const pager = document.getElementById("pubs-pager")!;
+    const items = Array.from(list.children) as HTMLElement[];
+    const per = Number(list.dataset.perPage) || 15;
+    const pages = Math.ceil(items.length / per);
+    const show = (page: number, scroll: boolean) => {
+      items.forEach((li, i) => (li.hidden = Math.floor(i / per) + 1 !== page));
+      pager.innerHTML =
+        `<button type="button" data-page="${page - 1}" ${page === 1 ? "disabled" : ""}>← Newer</button>` +
+        Array.from({ length: pages }, (_, n) => `<button type="button" data-page="${n + 1}" ${n + 1 === page ? 'aria-current="page"' : ""}>${n + 1}</button>`).join("") +
+        `<button type="button" data-page="${page + 1}" ${page === pages ? "disabled" : ""}>Older →</button>`;
+      if (scroll) document.getElementById("publications")!.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    if (pages > 1) {
+      pager.hidden = false;
+      show(1, false);
+      pager.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-page]");
+        if (btn && !btn.disabled) show(Number(btn.dataset.page), true);
+      });
+    }
+  }
+
   document.querySelectorAll<HTMLElement>(".carousel-track").forEach((track) => {
     const btns = document.querySelectorAll<HTMLButtonElement>(`.carousel-nav button[data-track="${track.id}"]`);
     const update = () => {
