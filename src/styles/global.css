@@ -409,7 +409,8 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
 .site-footer { border-top: 1px solid var(--rule); }
 /* The CSSC bubble sits centered on the footer line, like a sign-off. */
 .foot-mark { display: flex; justify-content: center; margin-top: -17px; }
-.foot-mark span { background: var(--paper); padding: 0 14px; }
+.foot-mark a { display: block; background: var(--paper); padding: 0 14px; transition: transform .15s ease; }
+.foot-mark a:hover { transform: translateY(-2px); }
 .foot-mark img { display: block; }
 .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px 32px; padding-block: 16px 40px; font-size: .92rem; color: var(--muted); }
 .foot-id { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; }
