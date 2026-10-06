@@ -25,10 +25,13 @@ const links = [
   <div class="contact-layout">
     <section class="msg" aria-labelledby="msg-title">
       <h2 id="msg-title">Send a message</h2>
-      <!-- Netlify Forms delivers each message by email. See README → "Contact form". -->
-      <form class="msg-form" id="msg-form" name="contact" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="company" novalidate>
-        <input type="hidden" name="form-name" value="contact" />
-        <p hidden><label>Leave this empty: <input name="company" /></label></p>
+      <!-- Web3Forms emails each message to Annie. The key lives in site.json (formKey). See README → "Contact form". -->
+      <form class="msg-form" id="msg-form" method="POST" action="https://api.web3forms.com/submit" data-key={site.formKey} data-email={site.email} novalidate>
+        <input type="hidden" name="access_key" value={site.formKey} />
+        <input type="hidden" name="subject" value="New message from annielizhang.com" />
+        <input type="hidden" name="from_name" value="annielizhang.com contact form" />
+        <input type="hidden" name="redirect" value={`${site.url}/contact/thanks/`} />
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
         <div class="msg-field">
           <label for="msg-name">Name</label>
           <input id="msg-name" name="name" type="text" autocomplete="name" required />
@@ -92,12 +95,26 @@ const links = [
       el.setAttribute("aria-invalid", String(!good));
       if (!good) { missing.push(label); first ??= el; }
     }
+    e.preventDefault();
     if (missing.length) {
-      e.preventDefault();
       status.className = "msg-status err";
       status.textContent = "Please add " + missing.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
       first?.focus();
+      return;
     }
+    const fail = () => {
+      status.className = "msg-status err";
+      status.innerHTML = `Sorry, the message didn’t go through. Please email me at <a href="mailto:${form.dataset.email}">${form.dataset.email}</a>.`;
+    };
+    if (!form.dataset.key) return fail();
+    const button = form.querySelector("button[type=submit]") as HTMLButtonElement;
+    button.disabled = true;
+    status.className = "msg-status";
+    status.textContent = "Sending…";
+    fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
+      .then((r) => r.json())
+      .then((r) => { if (r.success) location.href = "/contact/thanks/"; else throw r; })
+      .catch(() => { fail(); button.disabled = false; });
   });
 
   const copy = document.getElementById("copy-email")!;

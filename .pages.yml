@@ -232,6 +232,7 @@ content:
       - { name: cv, label: CV file path, type: string }
       - { name: url, type: string }
       - { name: description, label: Search engine description, type: text }
+      - { name: formKey, label: Contact form key (Web3Forms), type: string, description: "The access key Web3Forms emailed you. Messages from the Contact page go to the email it was created with." }
       - { name: goatcounter, label: GoatCounter code (visitor stats), type: string, description: "The name you chose at goatcounter.com, e.g. annielizhang. Leave empty to turn stats off." }
       - name: links
         type: object
