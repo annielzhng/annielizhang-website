@@ -48,7 +48,7 @@ const canonical = new URL(path, site.url).href;
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap site-inner">
-        <a class="wordmark" href="/">{site.name}</a>
+        <a class="wordmark" href="/">{site.name}<img class="wordmark-icon" src="/favicon.svg" alt="" width="24" height="24" /></a>
         <nav class="site-nav" aria-label="Main">
           <ul>
             {nav.map((item) => (
@@ -64,6 +64,7 @@ const canonical = new URL(path, site.url).href;
     </main>
 
     <footer class="site-footer">
+      <div class="foot-mark" aria-hidden="true"><span><img src="/favicon.svg" alt="" width="32" height="32" /></span></div>
       <div class="wrap foot-inner">
         <p class="foot-id"><span class="foot-name">{site.name}</span><span class="foot-sep" aria-hidden="true">·</span><span>{site.title}, {site.affiliation}</span></p>
         <div class="foot-links">
