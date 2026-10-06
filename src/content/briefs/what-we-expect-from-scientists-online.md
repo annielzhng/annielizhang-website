@@ -1,25 +1,35 @@
 ---
-headline: "How social media shapes what we expect from scientists"
-takeaway: "The more science people saw on social media, the more they expected scientists to speak up on politics, be warm and relatable, show their expertise, and engage with the public. And those who expected scientists to show competence and speak up politically trusted them more."
-date: "2026-10"
-inPress: true
-paperTitle: "Understanding How Exposure to Science Content on Social Media Shapes Normative Expectations of Scientists’ Communication: A Social Media Affordances Perspective"
-journal: "Public Understanding of Science"
-journalShort: "Public Understanding of Science"
+headline: How social media shapes what we expect from scientists
+takeaway: The more science people saw on social media, the more they expected
+  scientists to speak up on politics, be warm and relatable, show their
+  expertise, and engage with the public. And those who expected scientists to
+  show competence and speak up politically trusted them more.
+date: 2026-10
+paperTitle: "Understanding How Exposure to Science Content on Social Media
+  Shapes Normative Expectations of Scientists’ Communication: A Social Media
+  Affordances Perspective"
+journal: Public Understanding of Science
+journalShort: Public Understanding of Science
 authors:
-  - "Annie Li Zhang"
-method: "Survey"
-methodNote: "two-wave panel, February and March 2025"
-participants: "878 U.S. social media users"
+  - Annie Li Zhang
+method:
+  - Survey
+participants: 878 U.S. social media users
+methodNote: two-wave panel, February and March 2025
 areas:
-  - "Social media"
-  - "Public engagement of science"
-  - "Trust & credibility"
-  - "Message strategies"
-doi: "10.1177/09636625261491265"
-citation: "Zhang, A. L. (in press). Understanding how exposure to science content on social media shapes normative expectations of scientists’ communication: A social media affordances perspective. *Public Understanding of Science*."
+  - Social media
+  - Public engagement of science
+  - Trust & credibility
+  - Message strategies
+doi: 10.1177/09636625261491265
+openAccess: false
+inPress: true
+acceptedPdf: /papers/Affordances.pdf
+citation: "Zhang, A. L. (in press). Understanding how exposure to science
+  content on social media shapes normative expectations of scientists’
+  communication: A social media affordances perspective. *Public Understanding
+  of Science*."
 ---
-
 ## What we did
 
 Scroll through TikTok, Instagram, or X and you might see a scientist cracking jokes, answering questions in the comments, or weighing in on politics. Not long ago, most people saw scientists only through the news, if at all: in 2021, 72% of Americans couldn't name a single living scientist. Social media makes scientists, and science content of all kinds, far more visible. So we wondered: does all that scrolling change what people think scientists *should* do online? And do those expectations matter for whether people trust scientists?
