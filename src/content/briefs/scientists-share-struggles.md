@@ -19,6 +19,7 @@ areas:
   - Public engagement of science
   - Social media
 doi: 10.1177/10755470251322902
+openAccess: true
 citation: "Zhang, A. L., & Lu, H. (2025). When scientists share struggles: How
   scientists’ self-presentation can influence public perceptions, support for
   science, and information seeking intentions. *Science Communication, 48*(2),
