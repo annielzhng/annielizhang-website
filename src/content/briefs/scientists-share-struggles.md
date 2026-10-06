@@ -2,7 +2,7 @@
 headline: "What happens when scientists share their failures?"
 takeaway: "Scientists who posted about rejections and setbacks were seen as more trustworthy, open, and kind than scientists who posted only successes, and their audiences became more willing to support science."
 date: "2025-03"
-paperTitle: "When Scientists Share Their Struggles: How Scientists’ Self Presentation on Social Media Influences Public Perceptions, Support for Science, and Information Seeking Intentions"
+paperTitle: "When Scientists Share Struggles: How Scientists’ Self-Presentation Can Influence Public Perceptions, Support for Science, and Information Seeking Intentions"
 journal: "Science Communication"
 journalShort: "Science Communication"
 authors:
@@ -16,7 +16,7 @@ areas:
   - "Public engagement of science"
   - "Social media"
 doi: "10.1177/10755470251322902"
-citation: "Zhang, A. L., & Lu, H. (2025). When scientists share their struggles: How scientists’ self presentation on social media influences public perceptions, support for science, and information seeking intentions. *Science Communication*. Advance online publication."
+citation: "Zhang, A. L., & Lu, H. (2025). When scientists share struggles: How scientists’ self-presentation can influence public perceptions, support for science, and information seeking intentions. *Science Communication, 48*(2), 189–216."
 ---
 
 ## What we did

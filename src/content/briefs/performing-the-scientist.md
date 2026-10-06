@@ -15,7 +15,7 @@ areas:
   - "Trust & credibility"
   - "Social media"
 doi: "10.1080/1369118X.2025.2565313"
-citation: "Zhang, A. L. (2025). Performing ‘the scientist,’ credibly and authentically: Understanding how scientists manage their self-presentation on social media. *Information, Communication & Society*, 1–21."
+citation: "Zhang, A. L. (2026). Performing ‘the scientist,’ credibly and authentically: Understanding how scientists manage their self-presentation on social media. *Information, Communication & Society, 29*(8), 2353–2373."
 ---
 
 ## What we did

@@ -4,10 +4,20 @@ import MiniCard from "../components/MiniCard.astro";
 import { getBriefs, citationHTML } from "../lib/briefs";
 import research from "../data/research.json";
 import areas from "../data/research-areas.json";
+import extraPubs from "../data/publications.json";
 import site from "../data/site.json";
 
 const briefs = await getBriefs();
 const byId = new Map(briefs.map((b) => [b.id, b]));
+// Publications: papers with a CSSC Brief come from the briefs; other papers come from
+// src/data/publications.json. Sorted newest first ("in press" on top); within a year,
+// papers without a brief come first, matching the CV.
+const yearOf = (c: string) => c.match(/\((\d{4}|in press)\)/)?.[1] ?? "";
+const rank = (y: string) => (y === "in press" ? 9999 : Number(y) || 0);
+const pubs = [
+  ...extraPubs.map((p, i) => ({ year: p.year, citation: p.citation, journal: p.journal, doi: p.doi, brief: null as string | null, pdf: undefined as string | undefined, order: i })),
+  ...briefs.map((b, i) => ({ year: yearOf(b.data.citation), citation: b.data.citation, journal: b.data.journal, doi: b.data.doi, brief: b.id, pdf: b.data.acceptedPdf, order: 1000 + i })),
+].sort((a, b) => rank(b.year) - rank(a.year) || a.order - b.order);
 // Related briefs appear newest first.
 const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
 ---
@@ -66,15 +76,15 @@ const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
       <a class="more" href={site.links.scholar}>Google Scholar →</a>
     </div>
     <ol class="pubs">
-      {briefs.map((b) => (
+      {pubs.map((p) => (
         <li>
-          <span class="year">{b.data.date.slice(0, 4)}</span>
+          <span class="year">{p.year === "in press" ? "In press" : p.year}</span>
           <div>
-            <p class="cite-text" set:html={citationHTML(b.data.citation)} />
+            <p class="cite-text" set:html={citationHTML(p.citation)} />
             <div class="pub-links">
-              <a class="to-brief" href={`/briefs/${b.id}/`}>CSSC Brief</a>
-              <a class="to-journal" href={`https://doi.org/${b.data.doi}`} aria-label={`Full article in ${b.data.journal}`}><i>{b.data.journal}</i> ↗</a>
-              {b.data.acceptedPdf && <a class="to-pdf" href={b.data.acceptedPdf}>PDF</a>}
+              {p.brief && <a class="to-brief" href={`/briefs/${p.brief}/`}>CSSC Brief</a>}
+              {p.doi && <a class="to-journal" href={`https://doi.org/${p.doi}`} aria-label={`Full article in ${p.journal}`}><i>{p.journal}</i> ↗</a>}
+              {p.pdf && <a class="to-pdf" href={p.pdf}>PDF</a>}
             </div>
           </div>
         </li>

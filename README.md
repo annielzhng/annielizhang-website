@@ -55,6 +55,7 @@ Every brief is a text file in `src/content/briefs/`. To add one, copy an existin
 | What | File |
 |---|---|
 | CSSC Briefs | `src/content/briefs/*.md` |
+| Publications without a brief | `src/data/publications.json` (when you write a brief for one, delete it here) |
 | Research areas (Research page and homepage cards) | `src/data/research-areas.json` |
 | The bigger picture, methods, funding | `src/data/research.json` |
 | Courses | `src/data/teaching.json` |

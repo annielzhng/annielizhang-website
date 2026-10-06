@@ -16,7 +16,7 @@ areas:
   - "Public engagement of science"
   - "Social media"
 doi: "10.1177/14614448221141681"
-citation: "Zhang, A. L., & Lu, H. (2022). Behind the lab coat: How scientists’ self-disclosure on Twitter influences source perceptions, tweet engagement and scientific attitudes through social presence. *New Media & Society*."
+citation: "Zhang, A. L., & Lu, H. (2024). Behind the lab coat: How scientists’ self-disclosure on Twitter influences source perceptions, tweet engagement, and scientific attitudes through social presence. *New Media & Society, 26*(10), 5784–5801."
 ---
 
 ## What we did

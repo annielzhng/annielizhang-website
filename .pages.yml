@@ -111,6 +111,30 @@ content:
           format: markdown
           switcher: true
 
+  - name: publications
+    label: Other publications (no CSSC Brief yet)
+    type: file
+    path: src/data/publications.json
+    format: json
+    list: true
+    fields:
+      - name: year
+        label: Year (or "in press")
+        type: string
+        required: true
+      - name: citation
+        label: Citation (APA)
+        type: text
+        required: true
+        description: Put the journal name and volume between *asterisks* to italicize them.
+      - name: journal
+        label: Journal
+        type: string
+        required: true
+      - name: doi
+        label: DOI (optional)
+        type: string
+
   - name: research-areas
     label: Research areas (Research page)
     type: file
