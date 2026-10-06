@@ -10,6 +10,7 @@ export const RESEARCH_AREAS = [
   "Media representation",
   "Message strategies",
   "Social media",
+  "Emerging technologies",
   "Trust & credibility",
   "Climate & environment",
   "Health communication",

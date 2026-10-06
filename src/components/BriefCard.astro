@@ -5,8 +5,10 @@ interface Props { brief: Brief; }
 const { brief } = Astro.props;
 const b = brief.data;
 const href = `/briefs/${brief.id}/`;
-// Cards show four tags at most: the method(s), then as many research areas as fit.
-const shownAreas = b.areas.slice(0, Math.max(0, 4 - b.method.length));
+// Cards show four tags: the first method, then the first three research areas.
+// Briefs with several methods list them all on the brief page and in the filters.
+const shownMethods = b.method.slice(0, 1);
+const shownAreas = b.areas.slice(0, 3);
 ---
 <article class="brief" data-method={b.method.join("|")} data-areas={b.areas.join("|")}>
   <div class="brief-meta">
@@ -20,7 +22,7 @@ const shownAreas = b.areas.slice(0, Math.max(0, 4 - b.method.length));
     <p>{b.takeaway}</p>
     <div class="brief-foot">
       <ul class="tags" aria-label="Method and research areas">
-        {b.method.map((m) => (
+        {shownMethods.map((m) => (
           <li><a class="tag method" href={`/briefs/?method=${encodeURIComponent(m)}`} data-method={m} title="See all briefs that used this method">{m}</a></li>
         ))}
         {shownAreas.map((a) => (

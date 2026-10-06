@@ -497,3 +497,7 @@ a.tag { text-decoration: none; }
 .oa-line a:hover { text-decoration: underline; }
 .mini-methods { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
 .mini-top { align-items: flex-start; }
+/* Nested lists inside a brief (e.g. a list of styles under one finding) */
+.prose ul ul { margin-top: 10px; gap: 6px; }
+.prose ul ul li { padding-left: 22px; }
+.prose ul ul li::before { width: 7px; height: 7px; top: .65em; left: 4px; border-width: 1.5px; background: var(--paper); }
