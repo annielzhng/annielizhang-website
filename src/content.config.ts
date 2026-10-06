@@ -34,6 +34,8 @@ const briefs = defineCollection({
     doi: z.string(),
     // Optional: the accepted manuscript, uploaded to public/papers/ (e.g. "/papers/no-laughing-matter.pdf").
     acceptedPdf: z.string().optional(),
+    // True when the published paper is free to read on the journal's site.
+    openAccess: z.boolean().default(false),
     citation: z.string(),
   }),
 });

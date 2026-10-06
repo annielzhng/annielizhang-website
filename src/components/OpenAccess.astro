@@ -1,0 +1,9 @@
+---
+// Small "Open access" label for papers that are free to read on the journal's site.
+interface Props { size?: "sm" | "md"; }
+const { size = "sm" } = Astro.props;
+---
+<span class={`oa oa-${size}`} title="Free to read on the journal’s website">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 7.6-1.7"/></svg>
+  Open access
+</span>
