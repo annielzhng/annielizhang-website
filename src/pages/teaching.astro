@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import teaching from "../data/teaching.json";
+
+// Courses are listed alphabetically by course code.
+const sortCourses = (cs: { code: string }[]) => [...cs].sort((a, b) => a.code.localeCompare(b.code, "en", { numeric: true }));
+---
+<Base title="Teaching" description="Annie Li Zhang’s teaching philosophy and courses at Florida State University’s School of Communication.">
+  <section class="stack" style="--gap:20px">
+    <p class="label">Teaching</p>
+    <h1 class="page-title">Teaching communication that is thoughtful and ethical</h1>
+    <p class="measure" style="font-size:1.15rem">As a science journalist, I learned to distill complex research into stories that resonate with diverse audiences. Every interview with a scientist was a process of discovery, dialogue, debate, and collaboration. Whether my students go into journalism, public relations, or another field, my goal is to equip them for thoughtful and ethical communication and media engagement. Three principles guide how I teach.</p>
+  </section>
+
+  <section class="principles" style="margin-top:44px">
+    <div class="principle"><h2>Appreciate media’s impact critically</h2><p>Students learn to see how profoundly media shapes their lives and their understanding of the world.</p></div>
+    <div class="principle"><h2>Learn collaboratively</h2><p>Students draw on one another’s backgrounds and experiences to deepen what they learn.</p></div>
+    <div class="principle"><h2>Feel empowered as learners</h2><p>Students take ownership of their learning, inside and outside the classroom.</p></div>
+  </section>
+
+  {teaching.positions.map((pos) => (
+    <section class="block stack" style="--gap:0">
+      <div class="section-head">
+        <div class="stack">
+          <p class="label">{pos.years}</p>
+          <h2>{pos.title}</h2>
+        </div>
+      </div>
+      <p class="muted" style="padding-top:12px">{pos.unit}</p>
+      {sortCourses(pos.courses).map((c: any) => (
+        <div class="course"><span class="code">{c.code}</span><div><h3>{c.name}</h3><p class="muted">{c.terms}</p></div></div>
+      ))}
+    </section>
+  ))}
+</Base>

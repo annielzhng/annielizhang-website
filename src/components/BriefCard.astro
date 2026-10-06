@@ -1,0 +1,29 @@
+---
+import { authorsLine, formatDate, type Brief } from "../lib/briefs";
+interface Props { brief: Brief; }
+const { brief } = Astro.props;
+const b = brief.data;
+const href = `/briefs/${brief.id}/`;
+// Cards show four tags at most: the method plus the first three research areas.
+const shownAreas = b.areas.slice(0, 3);
+---
+<article class="brief" data-method={b.method} data-areas={b.areas.join("|")}>
+  <div class="brief-meta">
+    <span class="brief-date">{formatDate(b.date)}</span>
+    <span class="brief-journal">{b.journal}</span>
+    <p class="brief-authors"><span class="k">Authors</span><Fragment set:html={authorsLine(b.authors)} /></p>
+  </div>
+  <div class="brief-body">
+    <h3><a href={href}>{b.headline}</a></h3>
+    <p>{b.takeaway}</p>
+    <div class="brief-foot">
+      <ul class="tags" aria-label="Method and research areas">
+        <li><a class="tag method" href={`/briefs/?method=${encodeURIComponent(b.method)}`} data-method={b.method} title="See all briefs that used this method">{b.method}</a></li>
+        {shownAreas.map((a) => (
+          <li><a class="tag ra" href={`/briefs/?area=${encodeURIComponent(a)}`} data-area={a} title={`See all briefs in ${a}`}>{a}</a></li>
+        ))}
+      </ul>
+      <a class="read-more" href={href} aria-label={`Read more: ${b.headline}`}>Read more →</a>
+    </div>
+  </div>
+</article>

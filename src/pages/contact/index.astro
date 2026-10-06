@@ -1,0 +1,115 @@
+---
+import Base from "../../layouts/Base.astro";
+import site from "../../data/site.json";
+
+const topics = ["A question about my research", "Collaboration", "Media or speaking request", "Teaching or students", "Something else"];
+const icon = {
+  fsu: '<path d="M3 9.5 12 4l9 5.5"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"/><path d="M3 20h18"/>',
+  scholar: '<path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.3"/><path d="M22 9.5V15"/>',
+  linkedin: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7"/><path d="M3 12.5h18"/>',
+  x: '<path d="M20 12.5a7.5 7.5 0 0 1-10.9 6.7L4 20.5l1.4-4.6A7.5 7.5 0 1 1 20 12.5z"/>',
+};
+const links = [
+  { href: site.links.fsu, name: "FSU faculty page", icon: icon.fsu },
+  { href: site.links.scholar, name: "Google Scholar", icon: icon.scholar },
+  { href: site.links.linkedin, name: "LinkedIn", icon: icon.linkedin },
+  { href: site.links.x, name: "X", icon: icon.x },
+];
+---
+<Base title="Contact" description="Get in touch with Annie Li Zhang about research, collaboration, media or speaking requests.">
+  <section class="stack" style="--gap:20px">
+    <p class="label">Contact</p>
+    <h1 class="page-title">Let’s talk science communication</h1>
+    <p class="measure" style="font-size:1.15rem">Questions about my research, ideas for collaboration, media or speaking requests, or just want to say hello? Send a message below, or email me directly.</p>
+  </section>
+  <div class="contact-layout">
+    <section class="msg" aria-labelledby="msg-title">
+      <h2 id="msg-title">Send a message</h2>
+      <!-- Netlify Forms delivers each message by email. See README → "Contact form". -->
+      <form class="msg-form" id="msg-form" name="contact" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="company" novalidate>
+        <input type="hidden" name="form-name" value="contact" />
+        <p hidden><label>Leave this empty: <input name="company" /></label></p>
+        <div class="msg-field">
+          <label for="msg-name">Name</label>
+          <input id="msg-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="msg-field">
+          <label for="msg-email">Email</label>
+          <input id="msg-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="msg-field msg-wide">
+          <label for="msg-topic">What’s this about?</label>
+          <div class="select-plain">
+            <select id="msg-topic" name="topic">{topics.map((t) => <option>{t}</option>)}</select>
+          </div>
+        </div>
+        <div class="msg-field msg-wide">
+          <label for="msg-body">Message</label>
+          <textarea id="msg-body" name="message" rows="6" required></textarea>
+        </div>
+        <div class="msg-actions msg-wide">
+          <button class="btn primary btn-send" type="submit">Send message</button>
+          <p class="msg-status" id="msg-status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+    <aside class="contact-side">
+      <div class="email-card">
+        <img class="avatar" src="/images/annie-li-zhang.jpg" alt="" width="56" height="56" />
+        <div class="stack">
+          <span class="label">Email</span>
+          <span class="email" id="email-text">{site.email}</span>
+        </div>
+        <button class="btn small btn-copy" type="button" id="copy-email">Copy email address</button>
+      </div>
+      <nav class="elsewhere" aria-label="Find me elsewhere">
+        <p class="label elsewhere-label">Find me elsewhere</p>
+        {links.map((l) => (
+          <a href={l.href}>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={l.icon} /></span>
+            <span class="name">{l.name}</span><span class="arrow">↗</span>
+          </a>
+        ))}
+      </nav>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  const form = document.getElementById("msg-form") as HTMLFormElement;
+  form.addEventListener("submit", (e) => {
+    const status = document.getElementById("msg-status")!;
+    const checks: [string, (v: string) => boolean, string][] = [
+      ["msg-name", (v) => v.trim() !== "", "your name"],
+      ["msg-email", (v) => /.+@.+\..+/.test(v.trim()), "a valid email address"],
+      ["msg-body", (v) => v.trim() !== "", "a message"],
+    ];
+    const missing: string[] = [];
+    let first: HTMLElement | null = null;
+    for (const [id, ok, label] of checks) {
+      const el = document.getElementById(id) as HTMLInputElement;
+      const good = ok(el.value);
+      el.setAttribute("aria-invalid", String(!good));
+      if (!good) { missing.push(label); first ??= el; }
+    }
+    if (missing.length) {
+      e.preventDefault();
+      status.className = "msg-status err";
+      status.textContent = "Please add " + missing.join(", ").replace(/, ([^,]*)$/, " and $1") + ".";
+      first?.focus();
+    }
+  });
+
+  const copy = document.getElementById("copy-email")!;
+  const emailEl = document.getElementById("email-text")!;
+  copy.addEventListener("click", async () => {
+    const original = copy.textContent;
+    try { await navigator.clipboard.writeText(emailEl.textContent || ""); copy.textContent = "Copied"; }
+    catch {
+      const range = document.createRange(); range.selectNodeContents(emailEl);
+      const sel = getSelection()!; sel.removeAllRanges(); sel.addRange(range);
+      copy.textContent = "Selected. Press Ctrl+C to copy";
+    }
+    setTimeout(() => (copy.textContent = original), 2000);
+  });
+</script>

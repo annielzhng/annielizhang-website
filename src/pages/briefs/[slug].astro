@@ -1,0 +1,90 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import ShareBar from "../../components/ShareBar.astro";
+import site from "../../data/site.json";
+import { getBriefs, formatDate, authorsLine, citationHTML, citationText, type Brief } from "../../lib/briefs";
+
+export async function getStaticPaths() {
+  const briefs = await getBriefs();
+  return briefs.map((brief, i) => ({
+    params: { slug: brief.id },
+    props: { brief, newer: briefs[i - 1], older: briefs[i + 1] },
+  }));
+}
+
+interface Props { brief: Brief; newer?: Brief; older?: Brief; }
+const { brief, newer, older } = Astro.props;
+const b = brief.data;
+const { Content } = await render(brief);
+const pageUrl = new URL(`/briefs/${brief.id}/`, site.url).href;
+---
+<Base title={b.headline} description={b.takeaway}>
+  <article class="brief-page">
+    <div class="stack" style="--gap:18px">
+      <a class="back" href="/briefs/">← All CSSC Briefs</a>
+      <p class="label">CSSC Brief · {formatDate(b.date, "short")}</p>
+      <h1>{b.headline}</h1>
+      <p class="based">Based on <cite>{b.paperTitle}</cite>, published in <span class="journal">{b.journal}</span>.</p>
+    </div>
+    <div class="brief-layout">
+      <div class="prose">
+        <section class="short">
+          <p class="label">The short version</p>
+          <p class="short-text"><span class="hl">{b.takeaway}</span></p>
+        </section>
+        <Content />
+        <section class="cite-block">
+          <p class="label">Cite the paper</p>
+          <p class="cite-text" id="cite-text" data-copy={citationText(brief)} set:html={`${citationHTML(b.citation)} https://doi.org/${b.doi}`} />
+          <div class="btn-row">
+            <button class="btn small" type="button" id="copy-cite">Copy citation</button>
+            <a class="btn small primary" href={`https://doi.org/${b.doi}`}>Read the paper</a>
+            {b.acceptedPdf && <a class="btn small btn-pdf" href={b.acceptedPdf}>Accepted version (PDF)</a>}
+          </div>
+        </section>
+      </div>
+      <aside class="study" aria-label="Study at a glance">
+        <p class="label">Study at a glance</p>
+        <dl>
+          <div><dt>Method</dt><dd>{b.method}{b.methodNote && ` (${b.methodNote})`}</dd></div>
+          {b.participants && <div><dt>Participants</dt><dd>{b.participants}</dd></div>}
+          <div><dt>Published</dt><dd>{formatDate(b.date)}</dd></div>
+          <div><dt>Journal</dt><dd><i style="color:var(--rose)">{b.journal}</i></dd></div>
+          <div><dt>Authors</dt><dd set:html={authorsLine(b.authors)} /></div>
+          <div><dt>Research areas</dt><dd>
+            <ul class="tags" style="margin-top:6px">
+              {b.areas.map((a) => <li><a class="tag ra" href={`/briefs/?area=${encodeURIComponent(a)}`}>{a}</a></li>)}
+            </ul>
+          </dd></div>
+        </dl>
+        <div class="paper-links">
+          <a class="paper-link" href={`https://doi.org/${b.doi}`}>Published paper ↗</a>
+          {b.acceptedPdf && <a class="paper-link pdf" href={b.acceptedPdf}>Accepted version (free PDF)</a>}
+        </div>
+        <ShareBar url={pageUrl} title={b.headline} />
+      </aside>
+    </div>
+    <nav class="pager" aria-label="More briefs">
+      {newer ? <a href={`/briefs/${newer.id}/`}><span class="label">← Newer brief</span><strong>{newer.data.headline}</strong></a> : <span />}
+      {older ? <a class="next" href={`/briefs/${older.id}/`}><span class="label">Older brief →</span><strong>{older.data.headline}</strong></a> : <span />}
+    </nav>
+  </article>
+</Base>
+
+<script>
+  const btn = document.getElementById("copy-cite");
+  const el = document.getElementById("cite-text");
+  btn?.addEventListener("click", async () => {
+    const original = btn.textContent;
+    try {
+      await navigator.clipboard.writeText(el!.dataset.copy || el!.textContent || "");
+      btn.textContent = "Copied";
+    } catch {
+      const range = document.createRange(); range.selectNodeContents(el!);
+      const sel = getSelection()!; sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = "Selected. Press Ctrl+C to copy";
+    }
+    setTimeout(() => (btn.textContent = original), 2000);
+  });
+</script>

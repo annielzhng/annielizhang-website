@@ -1,0 +1,34 @@
+---
+// The hero illustration: a dendrimer, drawn in code so it follows the site colors in light and dark mode.
+---
+<svg id="dendrimer" viewBox="0 0 400 400" role="img" aria-label="Illustration of a dendrimer: a branching molecule with a cluster of nanoparticles at its core"></svg>
+<script>
+  const svg = document.getElementById("dendrimer");
+  if (svg) {
+    const NS = "http://www.w3.org/2000/svg";
+    const cx = 200, cy = 200, gens = 4, radii = [0, 52, 92, 132, 170];
+    const lines = document.createElementNS(NS, "g");
+    const nodes = document.createElementNS(NS, "g");
+    svg.append(lines, nodes);
+    const add = (parent: Element, tag: string, attrs: Record<string, string | number>) => {
+      const el = document.createElementNS(NS, tag);
+      for (const k in attrs) el.setAttribute(k, String(attrs[k]));
+      parent.appendChild(el);
+    };
+    const grow = (x: number, y: number, angle: number, spread: number, g: number) => {
+      if (g > gens) return;
+      const kids = g === 1 ? [0, 1, 2].map((i) => -Math.PI / 2 + (i * 2 * Math.PI) / 3) : [angle - spread / 2, angle + spread / 2];
+      const childSpread = g === 1 ? Math.PI / 3 : spread / 2;
+      for (const a of kids) {
+        const nx = cx + radii[g] * Math.cos(a), ny = cy + radii[g] * Math.sin(a);
+        add(lines, "line", { x1: x, y1: y, x2: nx, y2: ny, class: "d-line" });
+        if (g === gens) add(nodes, "circle", { cx: nx, cy: ny, r: 4.2, class: "d-tip" });
+        else add(nodes, "circle", { cx: nx, cy: ny, r: g === 1 ? 6.5 : 5, class: "d-node" });
+        grow(nx, ny, a, childSpread, g + 1);
+      }
+    };
+    grow(cx, cy, -Math.PI / 2, (2 * Math.PI) / 3, 1);
+    const core = [[0, 0], [9, 0], [-9, 0], [4.5, 7.8], [-4.5, 7.8], [4.5, -7.8], [-4.5, -7.8]];
+    for (const [dx, dy] of core) add(nodes, "circle", { cx: cx + dx, cy: cy + dy, r: 4.4, class: "d-core" });
+  }
+</script>

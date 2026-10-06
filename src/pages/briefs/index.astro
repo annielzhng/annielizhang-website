@@ -1,0 +1,164 @@
+---
+import Base from "../../layouts/Base.astro";
+import BriefCard from "../../components/BriefCard.astro";
+import { getBriefs } from "../../lib/briefs";
+import { METHODS, RESEARCH_AREAS } from "../../content.config";
+
+const briefs = await getBriefs();
+const count = (kind: "method" | "area", value: string) =>
+  briefs.filter((b) => (kind === "method" ? b.data.method === value : b.data.areas.includes(value as any))).length;
+const dropdowns = [
+  { id: "filter-area", kind: "area", label: "Research area", all: "All research areas", options: [...RESEARCH_AREAS] },
+  { id: "filter-method", kind: "method", label: "Method", all: "All methods", options: [...METHODS] },
+] as const;
+---
+<Base title="CSSC Briefs" description="The CSSC Briefs: plain-language summaries of Annie Li Zhang’s research on science communication, social media, and trust in science.">
+  <section class="stack" style="--gap:20px">
+    <p class="label">CSSC Briefs</p>
+    <h1 class="page-title">Communicating the science of science communication</h1>
+    <p class="measure" style="font-size:1.15rem">The CSSC Briefs take you inside the changing landscape of science communication. Each one explains a single study in plain language, so you can see how media shapes our grasp of scientific issues and apply those insights to your own work.</p>
+    <div class="filter-bar" role="group" aria-label="Filter briefs">
+      {dropdowns.map((d) => (
+        <div class="field">
+          <span class="label" id={`${d.id}-label`}>{d.label}</span>
+          <div class="dd" data-kind={d.kind} data-all={d.all}>
+            <button type="button" class="dd-btn" id={d.id} aria-haspopup="listbox" aria-expanded="false" aria-labelledby={`${d.id}-label ${d.id}`}><span>{d.all}</span></button>
+            <ul class="dd-list" role="listbox" aria-labelledby={`${d.id}-label`} hidden>
+              <li role="option" tabindex="-1" data-value="all" aria-selected="true"><span>{d.all}</span><span class="dd-n">{briefs.length}</span></li>
+              {d.options.map((o) => (
+                <li role="option" tabindex="-1" data-value={o} aria-selected="false"><span>{o}</span><span class="dd-n">{count(d.kind, o)}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+      <p class="filter-count" aria-live="polite"><span id="count-text">Showing {briefs.length} of {briefs.length} briefs</span><button type="button" id="clear-filters" hidden>Clear filters</button></p>
+    </div>
+  </section>
+
+  <div class="brief-list" id="brief-list" style="margin-top:4px">
+    {briefs.map((brief) => <BriefCard brief={brief} />)}
+    <p class="empty" id="empty" hidden>No briefs match both filters yet. Try clearing one.</p>
+  </div>
+  <nav class="pager-nums" id="pager" aria-label="Brief pages" hidden></nav>
+
+  <section class="subscribe">
+    <div class="stack" style="--gap:6px">
+      <h2>Follow new briefs</h2>
+      <p class="muted" style="font-size:1rem">New briefs are announced in the site’s RSS feed. Add it to any feed reader to get each one as it’s published.</p>
+    </div>
+    <div class="btn-row"><a class="btn primary" href="/rss.xml">RSS feed</a></div>
+  </section>
+</Base>
+
+<script>
+  // Filters (research area + method) and pages of ten. The selected filters live in the address,
+  // e.g. /briefs/?area=Social%20media, so a filtered view can be shared or bookmarked.
+  const PER_PAGE = 10;
+  const cards = [...document.querySelectorAll<HTMLElement>("#brief-list .brief")];
+  const params = new URLSearchParams(location.search);
+  const state = { area: params.get("area") || "all", method: params.get("method") || "all", page: Number(params.get("page")) || 1 };
+  const total = cards.length;
+
+  function syncUrl() {
+    const p = new URLSearchParams();
+    if (state.area !== "all") p.set("area", state.area);
+    if (state.method !== "all") p.set("method", state.method);
+    if (state.page > 1) p.set("page", String(state.page));
+    const q = p.toString();
+    history.replaceState(null, "", q ? `?${q}` : location.pathname);
+  }
+
+  function apply() {
+    const matches = cards.filter((c) =>
+      (state.method === "all" || c.dataset.method === state.method) &&
+      (state.area === "all" || (c.dataset.areas || "").split("|").includes(state.area)));
+    const pages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+    state.page = Math.min(Math.max(1, state.page), pages);
+    const start = (state.page - 1) * PER_PAGE;
+    const shown = new Set(matches.slice(start, start + PER_PAGE));
+    cards.forEach((c) => (c.hidden = !shown.has(c)));
+    document.getElementById("empty")!.hidden = matches.length > 0;
+
+    const filtered = state.area !== "all" || state.method !== "all";
+    const range = matches.length > PER_PAGE ? `${start + 1}–${start + shown.size} of ${matches.length}` : `${matches.length} of ${total}`;
+    document.getElementById("count-text")!.textContent = `Showing ${range} briefs`;
+    document.getElementById("clear-filters")!.hidden = !filtered;
+
+    document.querySelectorAll<HTMLElement>(".dd").forEach((dd) => {
+      const kind = dd.dataset.kind as "area" | "method";
+      const value = state[kind];
+      const btn = dd.querySelector<HTMLButtonElement>(".dd-btn")!;
+      btn.querySelector("span")!.textContent = value === "all" ? dd.dataset.all! : value;
+      btn.classList.toggle("is-set", value !== "all");
+      dd.querySelectorAll("li").forEach((li) => li.setAttribute("aria-selected", String(li.dataset.value === value)));
+    });
+
+    const pager = document.getElementById("pager")!;
+    pager.hidden = pages < 2;
+    pager.innerHTML = pages < 2 ? "" :
+      `<button type="button" data-page="${state.page - 1}" ${state.page === 1 ? "disabled" : ""}>← Newer</button>` +
+      Array.from({ length: pages }, (_, n) => `<button type="button" data-page="${n + 1}" ${n + 1 === state.page ? 'aria-current="page"' : ""}>${n + 1}</button>`).join("") +
+      `<button type="button" data-page="${state.page + 1}" ${state.page === pages ? "disabled" : ""}>Older →</button>`;
+    syncUrl();
+  }
+
+  document.getElementById("pager")!.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-page]");
+    if (!btn || btn.disabled) return;
+    state.page = Number(btn.dataset.page);
+    apply();
+    document.querySelector(".filter-bar")!.scrollIntoView({ block: "start" });
+  });
+  document.getElementById("clear-filters")!.addEventListener("click", () => { state.area = "all"; state.method = "all"; state.page = 1; apply(); });
+
+  // Tag links inside the cards filter in place instead of reloading the page.
+  document.getElementById("brief-list")!.addEventListener("click", (e) => {
+    const tag = (e.target as HTMLElement).closest<HTMLAnchorElement>("a.tag");
+    if (!tag) return;
+    e.preventDefault();
+    if (tag.dataset.method) { state.method = tag.dataset.method; state.area = "all"; }
+    if (tag.dataset.area) { state.area = tag.dataset.area; state.method = "all"; }
+    state.page = 1;
+    apply();
+    document.querySelector(".filter-bar")!.scrollIntoView({ block: "start" });
+  });
+
+  // Custom dropdowns: counts show in the open list only.
+  const closeAll = (except?: Element) => document.querySelectorAll(".dd").forEach((dd) => {
+    if (dd === except) return;
+    dd.querySelector<HTMLElement>(".dd-list")!.hidden = true;
+    dd.querySelector(".dd-btn")!.setAttribute("aria-expanded", "false");
+  });
+  document.addEventListener("click", () => closeAll());
+  document.querySelectorAll<HTMLElement>(".dd").forEach((dd) => {
+    const btn = dd.querySelector<HTMLButtonElement>(".dd-btn")!;
+    const list = dd.querySelector<HTMLElement>(".dd-list")!;
+    const opts = [...list.querySelectorAll<HTMLElement>("li")];
+    const open = () => {
+      closeAll(dd); list.hidden = false; btn.setAttribute("aria-expanded", "true");
+      (opts.find((o) => o.getAttribute("aria-selected") === "true") || opts[0]).focus();
+    };
+    const close = (refocus: boolean) => { list.hidden = true; btn.setAttribute("aria-expanded", "false"); if (refocus) btn.focus(); };
+    const choose = (li: HTMLElement) => {
+      state[dd.dataset.kind as "area" | "method"] = li.dataset.value!;
+      state.page = 1; close(true); apply();
+    };
+    btn.addEventListener("click", (e) => { e.stopPropagation(); list.hidden ? open() : close(false); });
+    btn.addEventListener("keydown", (e) => { if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); open(); } });
+    opts.forEach((li, k) => {
+      li.addEventListener("click", (e) => { e.stopPropagation(); choose(li); });
+      li.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") { e.preventDefault(); (opts[k + 1] || opts[0]).focus(); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); (opts[k - 1] || opts[opts.length - 1]).focus(); }
+        else if (e.key === "Home") { e.preventDefault(); opts[0].focus(); }
+        else if (e.key === "End") { e.preventDefault(); opts[opts.length - 1].focus(); }
+        else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(li); }
+        else if (e.key === "Escape") { e.preventDefault(); close(true); }
+        else if (e.key === "Tab") { close(false); }
+      });
+    });
+  });
+
+  apply();
+</script>

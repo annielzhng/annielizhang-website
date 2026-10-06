@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import BriefCard from "../components/BriefCard.astro";
+import Dendrimer from "../components/Dendrimer.astro";
+import { getBriefs } from "../lib/briefs";
+import site from "../data/site.json";
+import areas from "../data/research-areas.json";
+
+const latest = (await getBriefs()).slice(0, 3);
+---
+<Base>
+  <section class="hero">
+    <div class="stack" style="--gap:22px">
+      <p class="label">Assistant Professor · {site.department} · {site.affiliation}</p>
+      <h1>{site.name}</h1>
+      <p class="lede">I study how social media and new technologies shape the way the public understands science, and how scientists can communicate in ways that earn trust.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="/briefs/">Read the CSSC Briefs</a>
+        <a class="btn btn-cv btn-cv-pink" href={site.cv}>Curriculum vitae</a>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <Dendrimer />
+      <figcaption>A dendrimer, the branching molecule I built as a chemistry student. <a href="/about/">How it led me to science communication</a></figcaption>
+    </figure>
+  </section>
+
+  <section class="why2" aria-labelledby="why2-title">
+    <div class="why2-head">
+      <p class="label">Why the CSSC Briefs</p>
+      <h2 id="why2-title">Being a science communication scholar means two things to me.</h2>
+    </div>
+    <div class="eq">
+      <div class="eq-card">
+        <span class="eq-k">Studying</span>
+        <p>How media influences our understanding of and engagement with scientific issues.</p>
+      </div>
+      <span class="eq-op" aria-hidden="true">+</span>
+      <div class="eq-card">
+        <span class="eq-k">Sharing</span>
+        <p>Communicating my own science, engaging with people and communities on the science of science communication.</p>
+      </div>
+      <span class="eq-op" aria-hidden="true">=</span>
+      <div class="eq-card eq-result">
+        <span class="eq-k">The CSSC Briefs</span>
+        <p>A short summary of every project and publication, easily digestible, useful for you, and hopefully entertaining along the way.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <span class="label">Every brief walks you through</span>
+      <ol>
+        <li><span class="sn">1</span>What we did</li>
+        <li><span class="sn">2</span>What we found</li>
+        <li><span class="sn">3</span>Why it matters</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block stack" style="--gap:0">
+    <div class="section-head">
+      <h2>Latest CSSC Briefs</h2>
+      <a class="more" href="/briefs/">All briefs →</a>
+    </div>
+    <div class="brief-list">
+      {latest.map((brief) => <BriefCard brief={brief} />)}
+    </div>
+  </section>
+
+  <section class="block stack" style="--gap:28px">
+    <div class="section-head">
+      <h2>Research at a glance</h2>
+      <a class="more" href="/research/">Research and publications →</a>
+    </div>
+    <div class="areas">
+      {areas.map((a, k) => (
+        <a class={`area t${k + 1}`} href={`/research/#${a.id}`}>
+          <h3>{a.title}</h3>
+          <p>{a.short}</p>
+          <span class="go">Explore →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

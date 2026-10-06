@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import MiniCard from "../components/MiniCard.astro";
+import { getBriefs, citationHTML } from "../lib/briefs";
+import research from "../data/research.json";
+import areas from "../data/research-areas.json";
+import site from "../data/site.json";
+
+const briefs = await getBriefs();
+const byId = new Map(briefs.map((b) => [b.id, b]));
+// Related briefs appear newest first.
+const related = (ids: string[]) => briefs.filter((b) => ids.includes(b.id));
+---
+<Base title="Research" description="Annie Li Zhang’s research on strategic science communication, inclusive participation, and new media technologies, with a full list of publications.">
+  <section class="stack" style="--gap:20px">
+    <p class="label">Research</p>
+    <h1 class="page-title">How digital media shapes public understanding of science</h1>
+    <section class="fact-box" aria-label="The bigger picture">
+      <h2>The bigger picture</h2>
+      <p class="goal">{research.goal}</p>
+      <dl class="fact-cols">
+        {research.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.text}</dd></div>)}
+      </dl>
+      <div class="funding">
+        <div class="funding-total"><span class="amount">{research.fundingTotal}</span><span class="funding-label">in research funding</span></div>
+        <div class="funding-list">
+          <span class="funding-label">Selected grants and fellowships</span>
+          <ul>{research.funding.map((f) => <li>{f}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="block ra-rows" style="margin-top:56px">
+    {areas.map((a, k) => {
+      const list = related(a.related);
+      return (
+        <div class={`ra-block t${k + 1}`} id={a.id} tabindex="-1">
+          <div class={`ra-panel t${k + 1}`}>
+            <div class="ra-head">
+              <h2>{a.title}</h2>
+              <p class="tagline">{a.short}</p>
+            </div>
+            <p>{a.text}</p>
+          </div>
+          <div class="carousel">
+            <div class="carousel-head">
+              <span class="label">Related CSSC Briefs · {list.length}</span>
+              <div class="carousel-nav">
+                <button type="button" data-dir="-1" data-track={`track-${k}`} aria-label="Previous briefs">←</button>
+                <button type="button" data-dir="1" data-track={`track-${k}`} aria-label="Next briefs">→</button>
+              </div>
+            </div>
+            <div class="carousel-track" id={`track-${k}`} tabindex="0" aria-label={`Briefs related to ${a.title}`}>
+              {list.map((brief) => <MiniCard brief={brief} />)}
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </section>
+
+  <section class="block stack" style="--gap:0">
+    <div class="section-head">
+      <h2>Publications</h2>
+      <a class="more" href={site.links.scholar}>Google Scholar →</a>
+    </div>
+    <ol class="pubs">
+      {briefs.map((b) => (
+        <li>
+          <span class="year">{b.data.date.slice(0, 4)}</span>
+          <div>
+            <p class="cite-text" set:html={citationHTML(b.data.citation)} />
+            <div class="pub-links">
+              <a class="to-brief" href={`/briefs/${b.id}/`}>CSSC Brief</a>
+              <a class="to-journal" href={`https://doi.org/${b.data.doi}`} aria-label={`Full article in ${b.data.journal}`}><i>{b.data.journal}</i> ↗</a>
+              {b.data.acceptedPdf && <a class="to-pdf" href={b.data.acceptedPdf}>PDF</a>}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".carousel-track").forEach((track) => {
+    const btns = document.querySelectorAll<HTMLButtonElement>(`.carousel-nav button[data-track="${track.id}"]`);
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      btns.forEach((b) => {
+        b.parentElement!.hidden = max <= 2;
+        b.disabled = b.dataset.dir === "-1" ? track.scrollLeft <= 2 : track.scrollLeft >= max - 2;
+      });
+    };
+    btns.forEach((b) => b.addEventListener("click", () => {
+      const card = track.querySelector(".mini");
+      const step = card ? card.getBoundingClientRect().width + 16 : track.clientWidth;
+      track.scrollBy({ left: step * Number(b.dataset.dir), behavior: "smooth" });
+    }));
+    track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+    addEventListener("resize", update);
+    update();
+  });
+</script>

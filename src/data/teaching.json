@@ -1,0 +1,14 @@
+{
+  "positions": [
+    {
+      "years": "2026–present",
+      "title": "Instructor, Florida State University",
+      "unit": "School of Communication",
+      "courses": [
+        { "code": "COM 3930", "name": "Science Communication", "terms": "Spring 2027" },
+        { "code": "COM 4561", "name": "Social Media Campaigns", "terms": "Spring 2027" },
+        { "code": "SPC 4540", "name": "Persuasion", "terms": "Fall 2026" }
+      ]
+    }
+  ]
+}

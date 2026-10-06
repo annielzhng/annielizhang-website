@@ -1,0 +1,44 @@
+---
+// "Share this brief": links that open each platform's own share window, plus copy link.
+// Instagram has no web share link, so phones get a "More options" button that opens the
+// phone's share sheet (Instagram, Messages, etc.) and computers can copy the link.
+interface Props { url: string; title: string; }
+const { url, title } = Astro.props;
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(title);
+const targets = [
+  { name: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { name: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+  { name: "X", href: `https://x.com/intent/post?url=${u}&text=${t}` },
+  { name: "Reddit", href: `https://www.reddit.com/submit?url=${u}&title=${t}` },
+  { name: "Google Classroom", href: `https://classroom.google.com/share?url=${u}&title=${t}` },
+  { name: "Email", href: `mailto:?subject=${t}&body=${encodeURIComponent(`${title}\n\n${url}`)}` },
+];
+---
+<section class="share" aria-labelledby="share-title" data-url={url} data-title={title}>
+  <p class="label" id="share-title">Share this brief</p>
+  <ul class="share-list">
+    {targets.map((s) => (
+      <li><a class="share-btn" href={s.href} target={s.name === "Email" ? undefined : "_blank"} rel="noopener">{s.name}</a></li>
+    ))}
+    <li><button type="button" class="share-btn share-copy">Copy link</button></li>
+    <li><button type="button" class="share-btn share-native" hidden>More options (Instagram…)</button></li>
+  </ul>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".share").forEach((box) => {
+    const url = box.dataset.url!, title = box.dataset.title!;
+    const copy = box.querySelector<HTMLButtonElement>(".share-copy")!;
+    copy.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(url); copy.textContent = "Link copied"; }
+      catch { prompt("Copy this link:", url); }
+      setTimeout(() => (copy.textContent = "Copy link"), 2000);
+    });
+    const native = box.querySelector<HTMLButtonElement>(".share-native")!;
+    if (navigator.share) {
+      native.hidden = false;
+      native.addEventListener("click", () => navigator.share({ title, url }).catch(() => {}));
+    }
+  });
+</script>

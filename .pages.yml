@@ -1,0 +1,208 @@
+# Pages CMS (https://pagescms.org): a simple editor for this website.
+# Sign in at app.pagescms.org with GitHub, open this repository, and edit with forms.
+media:
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+  - name: papers
+    label: Paper PDFs
+    input: public/papers
+    output: /papers
+    extensions: [pdf]
+
+content:
+  - name: briefs
+    label: CSSC Briefs
+    type: collection
+    path: src/content/briefs
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      primary: headline
+      fields: [headline, date, method]
+      sort: date
+      order: desc
+    fields:
+      - name: headline
+        label: Headline
+        type: string
+        required: true
+        description: A plain-language question or statement, e.g. "Do scientists’ jokes on social media backfire?"
+      - name: takeaway
+        label: The short version
+        type: text
+        required: true
+        description: One or two sentences. Shown on cards and highlighted at the top of the brief.
+      - name: date
+        label: Publication date
+        type: string
+        required: true
+        pattern:
+          regex: "^\\d{4}-\\d{2}$"
+          message: "Use year-month, like 2025-10"
+      - name: paperTitle
+        label: Paper title
+        type: string
+        required: true
+      - name: journal
+        label: Journal (full name)
+        type: string
+        required: true
+      - name: journalShort
+        label: Journal (short name, optional)
+        type: string
+      - name: authors
+        label: Authors (in order, full names)
+        type: string
+        list: true
+        required: true
+      - name: method
+        label: Method
+        type: select
+        required: true
+        options:
+          values: ["Survey experiment", "Survey", "Interviews"]
+      - name: participants
+        label: Participants (optional)
+        type: string
+        description: e.g. "1,851 people" or "24 scientists"
+      - name: methodNote
+        label: Method note (optional)
+        type: string
+      - name: areas
+        label: Research areas
+        type: select
+        required: true
+        description: The first three appear on the brief's card; all of them are used by the filters.
+        options:
+          multiple: true
+          values:
+            - Self-presentation
+            - Media representation
+            - Message strategies
+            - Social media
+            - Trust & credibility
+            - Climate & environment
+            - Health communication
+            - Risk perceptions
+            - Public engagement of science
+      - name: doi
+        label: DOI
+        type: string
+        required: true
+        description: Just the DOI, e.g. 10.1177/10755470221114352
+      - name: acceptedPdf
+        label: Accepted version (PDF, optional)
+        type: file
+        description: Upload the accepted manuscript so readers can get past paywalls.
+        options:
+          media: papers
+      - name: citation
+        label: Citation (APA)
+        type: text
+        required: true
+        description: Put the journal name and volume between *asterisks* to italicize them.
+      - name: body
+        label: Brief text
+        type: rich-text
+        description: Use three headings, What we did / What we found / Why it matters. Findings work best as a bulleted list.
+        options:
+          format: markdown
+          switcher: true
+
+  - name: research-areas
+    label: Research areas (Research page)
+    type: file
+    path: src/data/research-areas.json
+    format: json
+    list: true
+    fields:
+      - name: id
+        label: Link name (letters and dashes)
+        type: string
+        required: true
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: short
+        label: One-line summary
+        type: string
+      - name: text
+        label: Description
+        type: text
+      - name: related
+        label: Related briefs (file names without .md)
+        type: string
+        list: true
+
+  - name: research
+    label: The bigger picture (Research page)
+    type: file
+    path: src/data/research.json
+    format: json
+    fields:
+      - name: goal
+        label: Goal statement
+        type: text
+      - name: facts
+        label: Focus / Methods / Background
+        type: object
+        list: true
+        fields:
+          - { name: label, type: string }
+          - { name: text, type: text }
+      - name: fundingTotal
+        label: Funding total
+        type: string
+      - name: funding
+        label: Selected grants and fellowships
+        type: string
+        list: true
+
+  - name: teaching
+    label: Teaching
+    type: file
+    path: src/data/teaching.json
+    format: json
+    fields:
+      - name: positions
+        label: Positions
+        type: object
+        list: true
+        fields:
+          - { name: years, type: string }
+          - { name: title, type: string }
+          - { name: unit, type: string }
+          - name: courses
+            type: object
+            list: true
+            fields:
+              - { name: code, type: string }
+              - { name: name, type: string }
+              - { name: terms, type: string }
+
+  - name: site
+    label: Site settings (email, links, CV)
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: name, type: string }
+      - { name: title, type: string }
+      - { name: affiliation, type: string }
+      - { name: department, type: string }
+      - { name: email, type: string }
+      - { name: cv, label: CV file path, type: string }
+      - { name: url, type: string }
+      - { name: description, label: Search engine description, type: text }
+      - name: links
+        type: object
+        fields:
+          - { name: fsu, label: FSU faculty page, type: string }
+          - { name: scholar, label: Google Scholar, type: string }
+          - { name: linkedin, label: LinkedIn, type: string }
+          - { name: x, label: X, type: string }
+          - { name: x_handle, label: X handle, type: string }
+          - { name: food_blog, label: Food blog, type: string }

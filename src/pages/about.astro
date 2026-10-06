@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../data/site.json";
+---
+<Base title="About" description="Annie Li Zhang is an assistant professor of science communication at Florida State University. Her path ran from building dendrimers in a chemistry lab to studying science communication.">
+  <section class="stack" style="--gap:20px">
+    <p class="label">About</p>
+    <h1 class="page-title">Different branches of the same dendrimer</h1>
+  </section>
+  <div class="about-grid" style="margin-top:40px">
+    <div class="prose">
+      <p>Hi, I’m Annie. I’m an assistant professor of science communication in the School of Communication at Florida State University (go Noles!). Before that, I was a postdoctoral scholar at the University of Washington’s Center for an Informed Public (go Dawgs!). I earned my PhD from the Department of Communication &amp; Media at the University of Michigan in 2025 (go Blue!). I grew up in Texas and studied at the University of Texas at Austin (Hook ’em!), where I earned a bachelor’s degree in chemistry with a minor in science communication and a certificate in computer programming.</p>
+      <p class="aside-note">And before you ask: yes, I root for all four teams. No, I don’t have a favorite. Yes, that’s a lie.</p>
+      <p>For nearly two years, plus a summer at the U.S. Department of Energy, I built dendrimers: branching molecules that can house even smaller nanoparticles. Together, these dendrimer-encapsulated nanoparticles, or DENs, sped up the breakdown of an acid to release hydrogen gas, a safe and sustainable source of clean energy.</p>
+      <p>People often ask how I went from that to studying communication. Looking back, the path branched much like a dendrimer. Questions about keeping nanoparticles stable grew into questions about what a path to clean energy would look like, and then into how the public would learn about this research, support it, and benefit from it. In my last year of college, those questions led me to science and environmental communication.</p>
+      <p>I still see my work as an extension of the lab. My research on scientists and social media is inspired by former colleagues and friends who share their research and stories with the public, and I hope my work can inform theirs in return. It is a different branch of the same dendrimer.</p>
+      <h2>Outside the office</h2>
+      <p>My partner and I run a food blog, <a href={site.links.food_blog}>Hungry Mind, Hungry Stomach</a>, where we review restaurants and coffee shops across the country. Recommendations are always welcome. We also keep a running list of the best iced oat milk lattes we’ve found around the world, which stays unpublished because it is apparently controversial.</p>
+      <p>You’ll often find me in a coffee shop in the middle of a Haruki Murakami marathon, or out on a run, training for a half marathon in Miami in 2027.</p>
+    </div>
+    <div class="aside-col">
+      <figure class="photo"><img src="/images/annie-li-zhang.jpg" alt="Annie Li Zhang smiling outdoors in a pink cable-knit sweater, with green foliage behind her" width="600" height="750" /></figure>
+      <div class="stack" style="--gap:14px">
+        <p class="label">Education and Academic Appointments</p>
+        <ol class="path">
+          <li><strong>Assistant Professor</strong>School of Communication, Florida State University<span class="yr">2026–present</span></li>
+          <li><strong>Postdoctoral Scholar</strong>Center for an Informed Public, University of Washington<span class="yr">2025–2026</span></li>
+          <li><strong>Ph.D., Communication &amp; Media</strong>University of Michigan<span class="yr">2025</span></li>
+          <li><strong>B.S., Chemistry</strong>University of Texas at Austin<span class="sub">Minor in science communication</span><span class="sub">Certificate in computer programming</span><span class="yr">2020</span></li>
+        </ol>
+      </div>
+      <a class="btn btn-cv btn-cv-pink" href={site.cv} style="align-self:flex-start">Curriculum vitae</a>
+    </div>
+  </div>
+</Base>

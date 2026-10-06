@@ -1,0 +1,17 @@
+# Old WordPress addresses → new pages (permanent redirects).
+# Netlify treats "/page" and "/page/" the same, so one line covers both.
+
+/cssc-briefs/           /briefs/          301
+/research-interests/    /research/        301
+/77-2/                  /contact/         301
+/feed/                  /rss.xml          301
+/category/*             /briefs/          301
+/tag/*                  /briefs/          301
+
+/2024/07/31/a-partisan-pandemic-how-covid-19-was-primed-for-polarization/  /briefs/partisan-pandemic/  301
+/2024/07/31/behind-the-lab-coat-how-scientists-self-disclosure-on-twitter-influences-source-perceptions-tweet-engagement-and-scientific-attitudes-through-social-presence/  /briefs/behind-the-lab-coat/  301
+/2024/07/31/no-laughing-matter-exploring-the-effects-of-scientists-humor-use-on-twitter-and-the-moderating-role-of-superiority/  /briefs/no-laughing-matter/  301
+/2025/10/14/performing-the-scientist-credibly-and-authentically-understanding-how-scientists-manage-their-self-presentation-on-social-media/  /briefs/performing-the-scientist/  301
+/2024/07/31/scientists-as-influencers-the-role-of-source-identity-self-disclosure-and-anti-intellectualism-in-science-communication-on-social-media/  /briefs/scientists-as-influencers/  301
+/2024/07/31/the-influence-of-flooding-imagery-and-party-cues-on-perceived-threat-collective-efficacy-and-intentions-for-political-action-to-address-climate-change/  /briefs/flooding-imagery-party-cues/  301
+/2024/07/31/unveiling-imperfections-how-scientists-self-presentation-can-influence-public-perceptions-science-advocacy-and-information-seeking-intentions/  /briefs/scientists-share-struggles/  301
