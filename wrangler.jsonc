@@ -1,0 +1,10 @@
+// Only used if Cloudflare builds this site as a Worker instead of a Pages project.
+// It serves the finished site in dist/ (including _redirects and the 404 page). Pages ignores this file.
+{
+  "name": "annielizhang",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
