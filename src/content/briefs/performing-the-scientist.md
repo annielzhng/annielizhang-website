@@ -1,27 +1,32 @@
 ---
-headline: "How do highly visible scientists decide who to be online?"
-takeaway: "Being a scientist online is ongoing identity work. Scientists write for an imagined audience, balance authenticity against oversharing, and women and minoritized scientists pay extra costs for their visibility."
-date: "2025-10"
-paperTitle: "Performing ‘the scientist,’ credibly and authentically: Understanding how scientists manage their self-presentation on social media"
-journal: "Information, Communication & Society"
-journalShort: "Info., Comm. & Society"
+headline: How do highly visible scientists decide who to be online?
+takeaway: Being a scientist online is ongoing identity work. Scientists write
+  for an imagined audience, balance authenticity against oversharing, and women
+  and minoritized scientists pay extra costs for their visibility.
+date: 2025-10
+paperTitle: "Performing ‘the scientist,’ credibly and authentically:
+  Understanding how scientists manage their self-presentation on social media"
+journal: Information, Communication & Society
+journalShort: Info., Comm. & Society
 authors:
-  - "Annie Li Zhang"
-method: "Interviews"
-participants: "24 scientists"
+  - Annie Li Zhang
+method: Interviews
+participants: 24 scientists
 areas:
-  - "Self-presentation"
-  - "Media representation"
-  - "Trust & credibility"
-  - "Social media"
-doi: "10.1080/1369118X.2025.2565313"
-openAccess: true
-citation: "Zhang, A. L. (2026). Performing ‘the scientist,’ credibly and authentically: Understanding how scientists manage their self-presentation on social media. *Information, Communication & Society, 29*(8), 2353–2373."
+  - Self-presentation
+  - Media representation
+  - Trust & credibility
+  - Social media
+doi: 10.1080/1369118X.2025.2565313
+citation: "Zhang, A. L. (2026). Performing ‘the scientist,’ credibly and
+  authentically: Understanding how scientists manage their self-presentation on
+  social media. *Information, Communication & Society, 29*(8), 2353–2373."
 ---
-
 ## What we did
 
-I interviewed 24 scientists with large followings (10,000 or more followers on TikTok, Instagram, or X) across North America and Europe. I asked how they picture their audiences, how they present themselves, and how they handle the tension between professional norms and what platforms reward.
+Social media has turned scientists into everyday public figures who are at once balancing multiple duties—teaching science, debunking misinformation, sharing personal updates, and fielding hot takes in the same feed. That visibility is powerful, but it’s complicated: multiple audiences collide (friends, colleagues, skeptics, policymakers), platform norms reward personality and speed, and lingering stereotypes about what a scientist should (or should not do) still shape how people respond.
+
+I conducted semi-structured interviews with 24 highly visible scientists (10k+ followers across different social media platforms, including TikTok, Instagram, and X) in North America and Europe. Using reflexive thematic analysis, I examined how they imagine their audiences, present their public identities, and navigate tensions between professional norms and platform expectations.
 
 ## What we found
 
@@ -33,4 +38,4 @@ I interviewed 24 scientists with large followings (10,000 or more followers on T
 
 ## Why it matters
 
-Being a scientist online is more than sharing facts. Clear audience targeting, calibrated authenticity, and support from institutions can make this public work safer and more effective.
+Being a scientist online is more than sharing facts. Clear audience targeting, calibrated authenticity, and support from institutions can make this public work safer and more effective. 
