@@ -21,9 +21,9 @@ export function formatDate(date: string, style: "long" | "short" = "long"): stri
 const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const me = (name: string, html: string) => (name === ME ? `<b class="me">${html}</b>` : html);
 
-/** Full names for cards and "Study at a glance". More than five authors: first three, …, last. */
+/** Names for cards and "Study at a glance". More than five authors: first four, …, last. (Publications always show everyone.) */
 export function authorsLine(authors: string[]): string {
-  const list = authors.length > 5 ? [...authors.slice(0, 3), "…", authors[authors.length - 1]] : authors;
+  const list = authors.length > 5 ? [...authors.slice(0, 4), "…", authors[authors.length - 1]] : authors;
   return list.map((a) => me(a, esc(a))).join(", ");
 }
 
