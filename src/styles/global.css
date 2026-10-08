@@ -29,20 +29,8 @@
   --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   --f-hand: "La Belle Aurore", "Segoe Print", cursive;  /* handwritten notes on the homepage */
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #231915; --surface: #2D221D; --band: #4A342B; --band-ink: #F3E2D6; --taupe: #4A3E36;
-    --sage: #33433B; --sage-ink: #DCE8E1; --ink: #F0E2D6; --head: #E9C9B5; --muted: #C9A792; --rule: #4A3930;
-    --accent: #E2B79E; --accent-soft: #3A2A23; --on-accent: #231915; --mark: #3D5147; --mark-ink: #F2F7F4; --rose: #EBA999; --rose-soft: #452B27; --pink: #5A3A3E; --pink-ink: #F6E4E6; --pink-light: #5A3A3E; --rose-pink: #E8A3B3; --blue: #C3D8D9;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #231915; --surface: #2D221D; --band: #4A342B; --band-ink: #F3E2D6; --taupe: #4A3E36;
-  --sage: #33433B; --sage-ink: #DCE8E1; --ink: #F0E2D6; --head: #E9C9B5; --muted: #C9A792; --rule: #4A3930;
-  --accent: #E2B79E; --accent-soft: #3A2A23; --on-accent: #231915; --mark: #3D5147; --mark-ink: #F2F7F4; --rose: #EBA999; --rose-soft: #452B27; --pink: #5A3A3E; --pink-ink: #F6E4E6; --pink-light: #5A3A3E; --rose-pink: #E8A3B3; --blue: #C3D8D9;
-  color-scheme: dark;
-}
+/* The site always uses the light palette, even when a visitor's device is in dark mode. */
+:root { color-scheme: light; }
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }

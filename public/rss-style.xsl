@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400..650&amp;display=swap" />
         <style>
           :root { --paper:#F5EBE0; --surface:#FBF6F0; --band:#D5BDAF; --head:#774936; --ink:#5E3828; --muted:#8A5A44; --rule:#D6C3B4; --rose:#9A5245; --rose-pink:#A34E62; --pink:#E3BFBE; --sage:#D8E2DC; --sage-ink:#3E4F46; color-scheme: light; }
-          @media (prefers-color-scheme: dark) { :root { --paper:#231915; --surface:#2D221D; --band:#4A342B; --head:#E9C9B5; --ink:#F0E2D6; --muted:#C9A792; --rule:#4A3930; --rose:#EBA999; --rose-pink:#E8A3B3; --pink:#5A3A3E; --sage:#33433B; --sage-ink:#DCE8E1; color-scheme: dark; } }
           * { box-sizing: border-box; }
           body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Literata", Georgia, serif; font-size: 1.06rem; line-height: 1.65; }
           .band { background: var(--band); border-bottom: 1px solid var(--rule); }
