@@ -2,11 +2,14 @@
 import Base from "../layouts/Base.astro";
 import BriefCard from "../components/BriefCard.astro";
 import Dendrimer from "../components/Dendrimer.astro";
-import { getBriefs } from "../lib/briefs";
+import { getBriefs, dateLabel } from "../lib/briefs";
 import site from "../data/site.json";
 import areas from "../data/research-areas.json";
 
-const latest = (await getBriefs()).slice(0, 3);
+const all = await getBriefs();
+const latest = all.slice(0, 3);
+// The sample brief in "Why the CSSC Briefs": chosen in Site settings, or the latest if unset.
+const sample = all.find((b) => b.id === (site as any).featuredBrief) ?? all[0];
 ---
 <Base>
   <section class="hero">
@@ -26,33 +29,26 @@ const latest = (await getBriefs()).slice(0, 3);
   </section>
 
   <section class="why2" aria-labelledby="why2-title">
-    <div class="why2-head">
-      <p class="label">Why the CSSC Briefs</p>
-      <h2 id="why2-title">Being a science communication scholar means two things to me.</h2>
-    </div>
-    <div class="eq">
-      <div class="eq-card">
-        <span class="eq-k">Studying</span>
-        <p>How media influences our understanding of and engagement with scientific issues.</p>
+    <div class="why-grid">
+      <div class="why-copy">
+        <div class="why2-head">
+          <p class="label">Why the CSSC Briefs</p>
+          <h2 id="why2-title">Being a science communication scholar means two things to me.</h2>
+        </div>
+        <p class="why-body">It’s about <span class="why-hl sage">exploring how media influences our understanding of and engagement with scientific issues</span>, and equally, <span class="why-hl pink">communicating my own science</span> with people and communities.</p>
+        <p class="why-close">So I created the CSSC Briefs, one for every project and publication.</p>
       </div>
-      <span class="eq-op" aria-hidden="true">+</span>
-      <div class="eq-card">
-        <span class="eq-k">Sharing</span>
-        <p>Communicating my own science, engaging with people and communities on the science of science communication.</p>
+      <div class="why-sample-wrap">
+        <a class="why-sample" href={`/briefs/${sample.id}/`}>
+          <span class="ws-meta">A CSSC Brief from {dateLabel(sample.data)}</span>
+          <span class="ws-head">{sample.data.headline}</span>
+          <span class="why-note" aria-hidden="true">the gist, in two sentences</span>
+          <span class="ws-short">{sample.data.takeaway}</span>
+          <span class="why-note" aria-hidden="true">then the full story: what we did, what we found, and why it matters</span>
+          <span class="ws-read">Read this brief</span>
+        </a>
+        <span class="why-note why-note-end" aria-hidden="true">hopefully entertaining, too!</span>
       </div>
-      <span class="eq-op" aria-hidden="true">=</span>
-      <div class="eq-card eq-result">
-        <span class="eq-k">The CSSC Briefs</span>
-        <p>A short summary of every project and publication, easily digestible, useful for you, and hopefully entertaining along the way.</p>
-      </div>
-    </div>
-    <div class="steps">
-      <span class="label">Every brief walks you through</span>
-      <ol>
-        <li><span class="sn">1</span>What we did</li>
-        <li><span class="sn">2</span>What we found</li>
-        <li><span class="sn">3</span>Why it matters</li>
-      </ol>
     </div>
   </section>
 

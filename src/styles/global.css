@@ -27,6 +27,7 @@
   --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
   --f-body: "Literata", Georgia, "Times New Roman", serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --f-hand: "La Belle Aurore", "Segoe Print", cursive;  /* handwritten notes on the homepage */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -196,19 +197,39 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
 .why2 { display: flex; flex-direction: column; gap: clamp(24px, 3.5vw, 34px); margin-top: clamp(64px, 9vw, 104px); }
 .why2-head { display: flex; flex-direction: column; gap: 10px; max-width: 46rem; }
 .why2-head h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 740; line-height: 1.12; color: var(--head); }
-.eq { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.15fr); gap: 14px; align-items: stretch; }
-.eq-card { display: flex; flex-direction: column; gap: 10px; padding: 22px 22px 24px; border-radius: 16px; background: var(--surface); border: 1px solid var(--rule); }
-.eq-k { font-family: var(--f-display); font-weight: 720; font-size: 1.25rem; color: var(--rose-pink); }
-.eq-card p { font-size: 1rem; line-height: 1.6; }
-.eq-result { background: var(--pink); border-color: var(--pink); }
-.eq-result .eq-k { color: var(--pink-ink); }
-.eq-result p { color: var(--pink-ink); }
-.eq-op { align-self: center; font-family: var(--f-display); font-weight: 700; font-size: 1.8rem; color: var(--rose-pink); }
-.steps { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding-top: 20px; border-top: 1px solid var(--rule); }
-.steps ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 8px; }
-.steps li { display: inline-flex; align-items: center; gap: 8px; padding: .45em 1em .45em .45em; border-radius: 999px; background: var(--rose-soft); font-family: var(--f-display); font-weight: 650; font-size: .95rem; color: var(--head); }
-.steps li + li::before { content: "→"; margin: 0 6px 0 -2px; color: var(--rose-pink); order: -1; display: none; }
-.steps .sn { width: 1.7rem; height: 1.7rem; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--rose-pink); font-size: .82rem; font-weight: 700; }
+/* "Why the CSSC Briefs": a short note beside a sample brief, with handwritten notes explaining its parts */
+.why-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-right: 190px; }
+.why-copy { display: flex; flex-direction: column; gap: 20px; }
+.why-copy .why2-head { margin-bottom: 6px; }
+.why-body { margin: 0; font-size: 1.18rem; line-height: 1.75; max-width: 36rem; }
+.why-hl { padding: .05em .06em; margin: 0 -.02em; border-radius: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.why-hl.sage { background: linear-gradient(transparent 10%, var(--sage) 10%, var(--sage) 94%, transparent 94%); color: var(--sage-ink); }
+.why-hl.pink { background: linear-gradient(transparent 10%, var(--pink-light) 10%, var(--pink-light) 94%, transparent 94%); color: var(--pink-ink); }
+.why-close { margin: 4px 0 0; font-size: 1.08rem; line-height: 1.7; color: var(--muted); max-width: 34rem; }
+.why-sample-wrap { position: relative; }
+.why-sample { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 20px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; color: var(--ink); transform: rotate(1.4deg); box-shadow: 7px 9px 0 var(--pink-light); transition: transform .2s ease; }
+.why-sample:hover { transform: rotate(0); }
+.ws-meta { font-size: .9rem; color: var(--muted); }
+.ws-head { font-family: var(--f-display); font-weight: 720; font-size: 1.25rem; line-height: 1.22; color: var(--head); }
+.ws-short { background: var(--sage); color: var(--sage-ink); padding: 10px 12px; border-radius: 4px; font-size: .96rem; line-height: 1.55; }
+.ws-read { font-family: var(--f-display); font-weight: 650; color: var(--rose-pink); text-decoration: underline; text-underline-offset: 4px; }
+.why-note { font-family: var(--f-hand); color: var(--rose-pink); font-size: 1.3rem; line-height: 1.15; }
+.why-note-end { display: block; margin: 22px 0 0 26px; }
+/* Wide screens: notes sit in the margin, level with what they describe */
+@media (min-width: 1100px) {
+  .why-sample-wrap { padding-bottom: 56px; }  /* room for the last margin note */
+  .why-sample .why-note { position: relative; align-self: flex-start; height: 0; width: 178px; margin: 0 0 -12px calc(100% + 30px); padding-left: 36px; }
+  .why-sample .why-note::before { content: ""; position: absolute; left: 0; top: .6em; width: 30px; height: 2px; border-radius: 2px; background: currentColor; }
+}
+/* Narrower screens: notes sit inside the card, right above what they describe */
+@media (max-width: 1099px) {
+  .why-grid { grid-template-columns: 1fr; padding-right: 0; }
+  .why-sample-wrap { max-width: 34rem; }
+  .why-sample { transform: none; box-shadow: 5px 6px 0 var(--pink-light); }
+  .why-sample .why-note { display: block; font-size: 1.35rem; margin: 4px 0 -6px; }
+  .why-sample .why-note::after { content: " ↓"; font-family: var(--f-display); font-size: .9em; }
+  .why-note-end { font-size: 1.35rem; margin: 18px 0 0 6px; }
+}
 
 /* Brief pagination (appears once there are more than 10 briefs) */
 .pager-nums { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
@@ -430,8 +451,6 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
   .subscribe { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
-  .eq { grid-template-columns: minmax(0, 1fr); }
-  .eq-op { justify-self: center; font-size: 1.5rem; line-height: 1; }
   .hero { grid-template-columns: minmax(0, 1fr); }
   .hero-figure svg { max-width: 300px; }
 }

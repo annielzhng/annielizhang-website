@@ -44,6 +44,8 @@ The new brief then appears automatically:
 
 Once there are more than 10 briefs, the list splits into pages.
 
+To change the sample brief on the homepage (in “Why the CSSC Briefs”), open **Site settings** and set **Homepage sample brief** to the brief's file name, without `.md`. Leave it empty to show the latest brief.
+
 To show a brief under a research area on the Research page, open **Research areas** and add the brief's file name to that area's **Related briefs**. Use the name shown in Pages CMS, without `.md`. Each area shows its five most recent briefs, newest first.
 
 ### Editing directly on GitHub
