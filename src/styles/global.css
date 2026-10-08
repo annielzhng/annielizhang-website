@@ -194,6 +194,7 @@ b.me, .cite-text b { font-weight: 650; color: var(--rose-pink); }
 .why-hl.sage { background: linear-gradient(transparent 10%, var(--sage) 10%, var(--sage) 94%, transparent 94%); color: var(--sage-ink); }
 .why-hl.pink { background: linear-gradient(transparent 10%, var(--pink-light) 10%, var(--pink-light) 94%, transparent 94%); color: var(--pink-ink); }
 .why-close { margin: 4px 0 0; font-size: 1.08rem; line-height: 1.7; color: var(--muted); max-width: 34rem; }
+.why-name { color: var(--rose-pink); }
 .why-sample-wrap { position: relative; }
 .why-sample { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 20px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; color: var(--ink); transform: rotate(1.4deg); box-shadow: 7px 9px 0 var(--pink-light); transition: transform .2s ease; }
 .why-sample:hover { transform: rotate(0); }
