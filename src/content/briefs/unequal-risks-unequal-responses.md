@@ -26,7 +26,7 @@ areas:
 doi: 10.1177/10755470251397919
 openAccess: false
 inPress: false
-acceptedPdf: /papers/Accepted Ver.pdf
+acceptedPdf: /papers/20260130_UnequalRisks.pdf
 citation: "Hart, P. S., Feldman, L., Choi, S., & Zhang, A. L. (2026). Unequal
   risks, unequal responses: Differential effects of emphasizing race vs. class
   disparities in news stories about climate impacts. *Science Communication*.
