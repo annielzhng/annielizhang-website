@@ -25,10 +25,10 @@ doi: 10.1177/09636625261491265
 openAccess: false
 inPress: false
 acceptedPdf: /papers/Affordances.pdf
-citation: "Zhang, A. L. (in press). Understanding how exposure to science
-  content on social media shapes normative expectations of scientists’
-  communication: A social media affordances perspective. *Public Understanding
-  of Science*. Advance online publication. "
+citation: "Zhang, A. L. (2026). Understanding how exposure to science content on
+  social media shapes normative expectations of scientists’ communication: A
+  social media affordances perspective. *Public Understanding of Science*.
+  Advance online publication. "
 ---
 ## What we did
 
